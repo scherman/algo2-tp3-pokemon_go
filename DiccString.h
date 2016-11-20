@@ -7,7 +7,8 @@
 
 template<class T>
 class DiccString {
-
+public:
+    class Iterador;
 };
 
 
