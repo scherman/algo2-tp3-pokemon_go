@@ -66,7 +66,7 @@ private:
         Pokemon pokemon;
         Conj<Coordenada>::Iterador itPosicionesPokemon;
         Conj<Jugador> jugadoresEnPosicion;
-        ConjPrior<Jugador> jugadoresEnZona;
+        ConjPrior jugadoresEnZona;
         Nat cantMovimientos;
     };
 
@@ -78,7 +78,7 @@ private:
         DiccString<Nat> capturados;
         Nat cantCapturados;
         Conj<Jugador>::Iterador itJugadoresActivos;
-        ConjPrior<Jugador>::Iterador itJugadoresEnZona;
+        ConjPrior::Iterador itJugadoresEnZona;
     };
 
     struct EstadoPokemon {
