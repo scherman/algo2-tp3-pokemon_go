@@ -19,29 +19,32 @@ class Juego {
 
 public:
 
+    Juego(Mapa &m);
+    ~Juego();
+
     Juego& crearJuego(Mapa &mapa);
     void agregarPokemon(Pokemon &p, Coordenada &coor);
     void agregarJugador(Jugador &j);
     void conectarse(Jugador &j, Coordenada &coor);
     void desconectarse(Jugador &j);
     void moverse(Jugador &j, Coordenada &coor);
-    const Mapa& mapa();
-    const Conj<Jugador>::Iterador& jugadores();
-    const bool& estaConectado(Jugador &j);
-    const Nat& sanciones(Jugador &j);
-    const Coordenada& posicion(Jugador &j);
-    const DiccString<Nat>::Iterador& pokemons();
-    const Conj<Jugador>& expulsados();
-    const Conj<Coordenada>& posConPokemons();
-    const Pokemon& pokemonEnPos(Coordenada &coor);
-    const Nat& cantMovimientosParaCaptura(Coordenada &coor);
-    const bool& puedoAgregarPokemon(Coordenada &coor);
-    const bool& hayPokemonCercano(Coordenada &coor);
-    const Coordenada& posPokemonCercano(Coordenada &coor);
-    const std::vector<Jugador>& entrenadoresPosibles(Coordenada& coor, std::vector<Jugador> &js);
-    const Nat& indiceRareza(Pokemon &p);
-    const Nat& cantPokemonsTotales();
-    const Nat& cantMismaEspecie(Pokemon &p);
+    const Mapa& mapa() const;
+    const Conj<Jugador>::Iterador& jugadores() const;
+    const bool& estaConectado(const Jugador &j) const;
+    const Nat& sanciones(const Jugador &j) const;
+    const Coordenada& posicion(const Jugador &j) const;
+    const DiccString<Nat>::Iterador& pokemons() const;
+    const Conj<Jugador>& expulsados() const;
+    const Conj<Coordenada>& posConPokemons() const;
+    const Pokemon& pokemonEnPos(const Coordenada &coor) const;
+    const Nat& cantMovimientosParaCaptura(const Coordenada &coor) const;
+    const bool& puedoAgregarPokemon(const Coordenada &coor) const;
+    const bool& hayPokemonCercano(const Coordenada &coor) const;
+    const Coordenada& posPokemonCercano(const Coordenada &coor) const;
+    const std::vector<Jugador>& entrenadoresPosibles(const Coordenada& coor, const std::vector<Jugador> &js) const;
+    const Nat& indiceRareza(const Pokemon &p) const;
+    const Nat& cantPokemonsTotales() const;
+    const Nat& cantMismaEspecie(const Pokemon &p) const;
 
 private:
 
