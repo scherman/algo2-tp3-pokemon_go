@@ -88,5 +88,4 @@ private:
 
 };
 
-
 #endif //ALGO2_TP3_POKEMON_GO_JUEGO_H

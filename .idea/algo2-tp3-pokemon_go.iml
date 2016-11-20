@@ -6,11 +6,10 @@
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DiccString.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Juego.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/ConjPrior.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Mapa.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DiccString.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Juego.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Mapa.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ConjPrior.h" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
