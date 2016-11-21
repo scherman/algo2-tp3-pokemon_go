@@ -6,6 +6,7 @@
 #define ALGO2_TP3_POKEMON_GO_JUEGO_H
 
 #include <vector>
+#include "aed2/Vector.h"
 #include "aed2/TiposBasicos.h"
 #include "DiccString.h"
 #include "TiposJuego.h"
@@ -24,7 +25,7 @@ public:
 
     Juego& crearJuego(Mapa &mapa);
     void agregarPokemon(Pokemon &p, Coordenada &coor);
-    void agregarJugador(Jugador &j);
+    Jugador agregarJugador(Jugador &j);
     void conectarse(Jugador &j, Coordenada &coor);
     void desconectarse(Jugador &j);
     void moverse(Jugador &j, Coordenada &coor);
@@ -33,7 +34,7 @@ public:
     const bool& estaConectado(const Jugador &j) const;
     const Nat& sanciones(const Jugador &j) const;
     const Coordenada& posicion(const Jugador &j) const;
-    const DiccString<Nat>::Iterador& pokemons() const;
+    const DiccString<Nat>::Iterador& pokemons(const Jugador &j) const;
     const Conj<Jugador>& expulsados() const;
     const Conj<Coordenada>& posConPokemons() const;
     const Pokemon& pokemonEnPos(const Coordenada &coor) const;
@@ -45,6 +46,7 @@ public:
     const Nat& indiceRareza(const Pokemon &p) const;
     const Nat& cantPokemonsTotales() const;
     const Nat& cantMismaEspecie(const Pokemon &p) const;
+    const Conj<Coordenada>& posicionesAledañas(const Coordenada &coor) const;
 
 private:
 
