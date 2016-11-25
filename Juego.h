@@ -5,12 +5,11 @@
 #ifndef ALGO2_TP3_POKEMON_GO_JUEGO_H
 #define ALGO2_TP3_POKEMON_GO_JUEGO_H
 
-#include <vector>
-#include "aed2/Vector.h"
-#include "aed2/TiposBasicos.h"
+#include "Vector.h"
+#include "TiposBasicos.h"
 #include "DiccString.h"
 #include "TiposJuego.h"
-#include "aed2/Conj.h"
+#include "Conj.h"
 #include "Mapa.h"
 #include "ConjPrior.h"
 
@@ -25,16 +24,20 @@ public:
 
     Juego& crearJuego(Mapa &mapa);
     void agregarPokemon(Pokemon &p, Coordenada &coor);
-    Jugador agregarJugador(Jugador &j);
+    Jugador agregarJugador();
+    //en el disenio no nos pasan ningun parametro. El nuevo jugador sera el largo de _jugadores
+    //Jugador agregarJugador(Jugador &j);
     void conectarse(Jugador &j, Coordenada &coor);
     void desconectarse(Jugador &j);
     void moverse(Jugador &j, Coordenada &coor);
     const Mapa& mapa() const;
-    const Conj<Jugador>::Iterador& jugadores() const;
+    const Conj<Jugador>::const_Iterador& jugadores() const;
+    //no me dejaba devolver Iterador, creo que no hay problema de devolver const_Iterador...
+    //const Conj<Jugador>::Iterador& jugadores() const;
     const bool& estaConectado(const Jugador &j) const;
     const Nat& sanciones(const Jugador &j) const;
     const Coordenada& posicion(const Jugador &j) const;
-    const DiccString<Nat>::Iterador& pokemons(const Jugador &j) const;
+    const DiccString<String>::Iterador& pokemons(const Jugador &j) const;
     const Conj<Jugador>& expulsados() const;
     const Conj<Coordenada>& posConPokemons() const;
     const Pokemon& pokemonEnPos(const Coordenada &coor) const;
@@ -42,7 +45,7 @@ public:
     const bool& puedoAgregarPokemon(const Coordenada &coor) const;
     const bool& hayPokemonCercano(const Coordenada &coor) const;
     const Coordenada& posPokemonCercano(const Coordenada &coor) const;
-    const std::vector<Jugador>& entrenadoresPosibles(const Coordenada& coor, const std::vector<Jugador> &js) const;
+    const Vector<Jugador>& entrenadoresPosibles(const Coordenada& coor, const Vector<Jugador> &js) const;
     const Nat& indiceRareza(const Pokemon &p) const;
     const Nat& cantPokemonsTotales() const;
     const Nat& cantMismaEspecie(const Pokemon &p) const;
@@ -54,8 +57,8 @@ private:
     struct EstadoJugador;
     struct EstadoPokemon;
 
-    std::vector<std::vector<Parcela>> _mapa;
-    std::vector<EstadoJugador> _jugadores;
+    Vector<Vector<Parcela>> _mapa;
+    Vector<EstadoJugador> _jugadores;
     DiccString<EstadoPokemon> _pokemones;
     Conj<Coordenada> _posicionesPokemons;
     Nat _cantTotalPokemones;
@@ -63,7 +66,7 @@ private:
 
     struct Parcela {
         bool definida;
-        std::vector<std::vector<bool>> conexiones;
+        Vector<Vector<bool>> conexiones;
         bool hayPokemon;
         Pokemon pokemon;
         Conj<Coordenada>::Iterador itPosicionesPokemon;
@@ -77,7 +80,7 @@ private:
         bool conectado;
         Nat sanciones;
         Coordenada posicion;
-        DiccString<Nat> capturados;
+        DiccString<String> capturados;
         Nat cantCapturados;
         Conj<Jugador>::Iterador itJugadoresActivos;
         ConjPrior::Iterador itJugadoresEnZona;
