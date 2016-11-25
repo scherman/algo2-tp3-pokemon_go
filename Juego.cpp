@@ -7,7 +7,7 @@ const Nat& maxLong(const Mapa &m);
 Juego::Juego(Mapa &m) {
     Nat mLat = maxLat(m);
     Nat mLong = maxLong(m);
-    
+
 }
 
 Juego::~Juego() {
@@ -23,7 +23,7 @@ void Juego::agregarPokemon(Pokemon &p, Coordenada &coor) {
 }
 
 Jugador Juego::agregarJugador() {
-    EstadoJugador estadoJugadorNoConectado = {true, false, 0, Coordenada(0,0), DiccString(),0, Conj().CrearIt(), ConjPrior().CrearIt())};
+    EstadoJugador estadoJugadorNoConectado = {true, false, 0, Coordenada(0,0), DiccString(),0, Conj().CrearIt(), ConjPrior().CrearIt()};
     _jugadores.AgregarAtras(estadoJugadorNoConectado);
     Conj<Jugador>::Iterador it = _jugadoresActivos.AgregarRapido(_jugadores.Longitud());
     _jugadores[_jugadores.Longitud()].itJugadoresActivos = it;
