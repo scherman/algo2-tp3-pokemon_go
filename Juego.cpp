@@ -73,9 +73,7 @@ Juego::~Juego() {
 
 }
 
-Juego &Juego::crearJuego(Mapa &mapa) {
 
-}
 
 void Juego::agregarPokemon(Pokemon &p,Coordenadatp3 &coor) {
     // Agrego pokemon en j.pokemones
