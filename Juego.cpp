@@ -147,19 +147,20 @@ void Juego::moverse(Jugador &j,Coordenadatp3 &coor) {
 }
 
 const Mapa &Juego::mapa() const {
-    //arreglar para cuando este hecho mapa
-    Mapa nuevo = Mapa();
+    Mapa* m = new Mapa;
     Nat i = 0;
     Nat j = 0;
-    while(i < _mapa.Longitud()){
-        while(j < _mapa.Longitud()){
+    while(i < _mapa.Longitud()){//i itera sobre las columnas de mapa
+        j = 0;
+        while(j < _mapa[i].Longitud()){
             if(_mapa[i][j].definida == true){
-                nuevo.agregarCoor(Coordenadatp3(i,j));
+                (*m).agregarCoor( Coordenadatp3(i,j));
             }
             j++;
         }
         i++;
     }
+    return *m;
 }
 
 const Conj<Jugador>::const_Iterador Juego::jugadores() const {
