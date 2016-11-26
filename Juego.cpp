@@ -46,8 +46,7 @@ Juego::Juego(Mapa &m) {
         lon = 0;
         while(lon <= mLong){
             Parcela parcelaNoDef ;
-            if(m.posExistente(Coordenadatp3(lat,lon))){
-                //Parcela* parcelaNoDef = new Parcela;
+            if(m.posExistente(Coordenadatp3(lat,lon))){                
                 parcelaNoDef.conexiones = caminos;
                 parcelaNoDef.definida = true;
                 Conj<Coordenadatp3>::const_Iterador itDos = m.coordenadas().CrearIt();
