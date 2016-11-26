@@ -85,7 +85,7 @@ void Juego::agregarPokemon(Pokemon &p,Coordenadatp3 &coor) {
     }
     Conj<Coordenadatp3>::Iterador itPokemones = estadoPokemon.posiciones.AgregarRapido(coor);
     estadoPokemon.cantTotalEspecie++;
-//    _pokemones.DefinirRapido(p, estadoPokemon);
+    _pokemones.DefinirRapido(p, estadoPokemon);
 
     // Agrego pokemon en j.posicionesPokemones
     Conj<Coordenadatp3>::Iterador itPosicionesPokemones = _posicionesPokemons.AgregarRapido(coor);
@@ -252,12 +252,17 @@ const Vector<Jugador> &Juego::entrenadoresPosibles(const Coordenada &coor, const
 }
 */
 const Nat Juego::indiceRareza(const Pokemon &p) const {
+    EstadoPokemon estadoPokemon = _pokemones.Significado(p);
+    return 100 - (estadoPokemon.cantTotalEspecie * 100) / _cantTotalPokemones;
 }
 
 const Nat Juego::cantPokemonsTotales() const {
+    return _cantTotalPokemones;
 }
 
 const Nat Juego::cantMismaEspecie(const Pokemon &p) const {
+    EstadoPokemon estadoPokemon = _pokemones.Significado(p);
+    return estadoPokemon.cantTotalEspecie;
 }
 
 const Conj<Coordenadatp3> &Juego::posicionesAledanias(const Coordenadatp3 &coor) const{

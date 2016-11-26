@@ -89,6 +89,10 @@ private:
     struct EstadoPokemon {
         Nat cantTotalEspecie;
         Conj<Coordenadatp3> posiciones;
+
+        bool operator == (const EstadoPokemon& b) {return (cantTotalEspecie == b.cantTotalEspecie) && (posiciones == b.posiciones);}
+
+
     };
 
 };
