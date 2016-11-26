@@ -22,7 +22,6 @@ public:
     Juego(Mapa &m);
     ~Juego();
 
-    Juego& crearJuego(Mapa &mapa);
     void agregarPokemon(Pokemon &p, Coordenadatp3 &coor);
     Jugador agregarJugador();
     //en el disenio no nos pasan ningun parametro. El nuevo jugador sera el largo de _jugadores
