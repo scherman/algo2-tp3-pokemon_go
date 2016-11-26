@@ -1,13 +1,73 @@
+
 #include "Juego.h"
 
 
-const Nat& maxLat(const Mapa &m);
-const Nat& maxLong(const Mapa &m);
+Nat maxLat(const Mapa &m){
+Conj<Coordenadatp3>::const_Iterador it = m.coordenadas().CrearIt();
+Nat masAlto = 0;
+while(it.HaySiguiente()){
+    if (masAlto < it.Siguiente().Latitud())
+        masAlto = it.Siguiente().Latitud();
+    it.Avanzar();
+}
+return masAlto;
+}
+Nat maxLong(const Mapa &m){
+Conj<Coordenadatp3>::const_Iterador it = m.coordenadas().CrearIt();
+Nat masAncho = 0;
+while(it.HaySiguiente()){
+    if (masAncho < it.Siguiente().Longitud())
+        masAncho = it.Siguiente().Longitud();
+    it.Avanzar();
+}
+return masAncho;
+}
 
 Juego::Juego(Mapa &m) {
     Nat mLat = maxLat(m);
     Nat mLong = maxLong(m);
+    Nat lat = 0;
+    Nat lon = 0;
+    Vector<Vector<bool> > caminos;
+    while(lat <= mLat){ //creamos matriz caminos de false
+        Vector<bool> filaCamino;
+        lon = 0;
+        while(lon <= mLong){
+            filaCamino.AgregarAtras(false);
+            lon++;
+        }
+        caminos.AgregarAtras(filaCamino);
+        lat++;
+    }
+    lat = 0;
+    lon = 0;
+    while(lat <= mLat){ //definimos en mapa de juego coordenadas validas
+        Vector<Parcela> fila;
+        lon = 0;
+        while(lon <= mLong){
+            Parcela parcelaNoDef ;
+            if(m.posExistente(Coordenadatp3(lat,lon))){
+                //Parcela* parcelaNoDef = new Parcela;
+                parcelaNoDef.conexiones = caminos;
+                parcelaNoDef.definida = true;
+                Conj<Coordenadatp3>::const_Iterador itDos = m.coordenadas().CrearIt();
+                while(itDos.HaySiguiente()){
+                    if (m.hayCamino(Coordenadatp3(lat,lon),itDos.Siguiente())){
+                       parcelaNoDef.conexiones[itDos.Siguiente().Latitud()][itDos.Siguiente().Longitud()] = true;
+                    }
+                itDos.Avanzar();
+                }
+                fila.AgregarAtras(parcelaNoDef);
+            } else {
+                fila.AgregarAtras(parcelaNoDef);
+            }
+            lon++;
+        }
+        _mapa.AgregarAtras(fila);
+        lat++;
+    }
 
+    _cantTotalPokemones = 0;
 }
 
 Juego::~Juego() {
