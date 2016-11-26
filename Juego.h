@@ -22,6 +22,7 @@ public:
     Juego(Mapa &m);
     ~Juego();
 
+
     void agregarPokemon(Pokemon &p, Coordenadatp3 &coor);
     Jugador agregarJugador();
     //en el disenio no nos pasan ningun parametro. El nuevo jugador sera el largo de _jugadores
@@ -72,6 +73,12 @@ private:
         Conj<Jugador> jugadoresEnPosicion;
         ConjPrior jugadoresEnZona;
         Nat cantMovimientos;
+        Parcela(){
+        definida = false;
+        hayPokemon = false;
+        pokemon = "";
+        cantMovimientos = 0;
+        }
     };
 
     struct EstadoJugador{
