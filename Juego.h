@@ -5,11 +5,11 @@
 #ifndef ALGO2_TP3_POKEMON_GO_JUEGO_H
 #define ALGO2_TP3_POKEMON_GO_JUEGO_H
 
-#include "Vector.h"
-#include "TiposBasicos.h"
+#include "aed2/Vector.h"
+#include "aed2/TiposBasicos.h"
 #include "DiccString.h"
 #include "TiposJuego.h"
-#include "Conj.h"
+#include "aed2/Conj.h"
 #include "Mapa.h"
 #include "ConjPrior.h"
 
@@ -23,33 +23,33 @@ public:
     ~Juego();
 
     Juego& crearJuego(Mapa &mapa);
-    void agregarPokemon(Pokemon &p, Coordenada &coor);
+    void agregarPokemon(Pokemon &p, Coordenadatp3 &coor);
     Jugador agregarJugador();
     //en el disenio no nos pasan ningun parametro. El nuevo jugador sera el largo de _jugadores
     //Jugador agregarJugador(Jugador &j);
-    void conectarse(Jugador &j, Coordenada &coor);
+    void conectarse(Jugador &j, Coordenadatp3 &coor);
     void desconectarse(Jugador &j);
-    void moverse(Jugador &j, Coordenada &coor);
+    void moverse(Jugador &j, Coordenadatp3 &coor);
     const Mapa& mapa() const;
     const Conj<Jugador>::const_Iterador& jugadores() const;
     //no me dejaba devolver Iterador, creo que no hay problema de devolver const_Iterador...
     //const Conj<Jugador>::Iterador& jugadores() const;
     const bool& estaConectado(const Jugador &j) const;
     const Nat& sanciones(const Jugador &j) const;
-    const Coordenada& posicion(const Jugador &j) const;
-    const DiccString<String>::Iterador& pokemons(const Jugador &j) const;
+    const Coordenadatp3& posicion(const Jugador &j) const;
+    const DiccString<String>::itDiccString& pokemons(const Jugador &j) const;
     const Conj<Jugador>& expulsados() const;
-    const Conj<Coordenada>& posConPokemons() const;
-    const Pokemon& pokemonEnPos(const Coordenada &coor) const;
-    const Nat& cantMovimientosParaCaptura(const Coordenada &coor) const;
-    const bool& puedoAgregarPokemon(const Coordenada &coor) const;
-    const bool& hayPokemonCercano(const Coordenada &coor) const;
-    const Coordenada& posPokemonCercano(const Coordenada &coor) const;
-    const Vector<Jugador>& entrenadoresPosibles(const Coordenada& coor, const Vector<Jugador> &js) const;
+    const Conj<Coordenadatp3>& posConPokemons() const;
+    const Pokemon& pokemonEnPos(const Coordenadatp3 &coor) const;
+    const Nat& cantMovimientosParaCaptura(const Coordenadatp3 &coor) const;
+    const bool& puedoAgregarPokemon(const Coordenadatp3 &coor) const;
+    const bool& hayPokemonCercano(const Coordenadatp3 &coor) const;
+    const Coordenadatp3& posPokemonCercano(const Coordenadatp3 &coor) const;
+    const Vector<Jugador>& entrenadoresPosibles(const Coordenadatp3& coor, const Vector<Jugador> &js) const;
     const Nat& indiceRareza(const Pokemon &p) const;
     const Nat& cantPokemonsTotales() const;
     const Nat& cantMismaEspecie(const Pokemon &p) const;
-    const Conj<Coordenada>& posicionesAledañas(const Coordenada &coor) const;
+    const Conj<Coordenadatp3>& posicionesAledanias(const Coordenadatp3 &coor) const;
 
 private:
 
@@ -57,19 +57,19 @@ private:
     struct EstadoJugador;
     struct EstadoPokemon;
 
-    Vector<Vector<Parcela>> _mapa;
+    Vector<Vector<Parcela> > _mapa;
     Vector<EstadoJugador> _jugadores;
     DiccString<EstadoPokemon> _pokemones;
-    Conj<Coordenada> _posicionesPokemons;
+    Conj<Coordenadatp3> _posicionesPokemons;
     Nat _cantTotalPokemones;
     Conj<Jugador> _jugadoresActivos;
 
     struct Parcela {
         bool definida;
-        Vector<Vector<bool>> conexiones;
+        Vector<Vector<bool> > conexiones;
         bool hayPokemon;
         Pokemon pokemon;
-        Conj<Coordenada>::Iterador itPosicionesPokemon;
+        Conj<Coordenadatp3>::Iterador itPosicionesPokemon;
         Conj<Jugador> jugadoresEnPosicion;
         ConjPrior jugadoresEnZona;
         Nat cantMovimientos;
@@ -79,7 +79,7 @@ private:
         bool recienCreado;
         bool conectado;
         Nat sanciones;
-        Coordenada posicion;
+        Coordenadatp3 posicion;
         DiccString<String> capturados;
         Nat cantCapturados;
         Conj<Jugador>::Iterador itJugadoresActivos;
@@ -88,7 +88,7 @@ private:
 
     struct EstadoPokemon {
         Nat cantTotalEspecie;
-        Conj<Coordenada> posiciones;
+        Conj<Coordenadatp3> posiciones;
     };
 
 };

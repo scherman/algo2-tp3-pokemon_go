@@ -1,4 +1,4 @@
-#ifndef ALGO2_TP3_POKEMON_GO_MAPA_H
+#ifndef ALGO2__POKEMON_GO_MAPA_H
 #define ALGO2_TP3_POKEMON_GO_MAPA_H
 //#include "TiposJuego.h"
 #include "aed2.h"
@@ -102,6 +102,4 @@ return existeCamino(coor1,coor2, nuevo);
 }
 
 
-#endif //ALGO2_TP3_POKEMON_GO_MAPA_H
-
-
+#endif //ALGO2__POKEMON_GO_MAPA_H

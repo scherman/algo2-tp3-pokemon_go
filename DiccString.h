@@ -34,7 +34,7 @@ class DiccString {
 	  	class const_itDiccString;
 	  	friend class itConj;
 
-		DiccString();
+		DiccString();		
 		~DiccString();
 		void DefinirRapido(const String&,const T&);
 		bool Definido(const String&) const;
@@ -43,7 +43,7 @@ class DiccString {
 		const Conj<String>& Claves() const;
 		void Borrar(const String&);
 		//const String& Maximo()const;
-		//const String& Minimo()const; 
+		//const String& Minimo()const;
 		bool operator==(const DiccString<T>& otro)const;
 		DiccString<T>& operator=(const DiccString<T>& otra);
 
@@ -51,15 +51,15 @@ class DiccString {
 	    const_itDiccString CrearIt() const;
 
 	    DiccString(const DiccString<T>& otro);
-		
+
 		class itDiccString{
 	    	public:
            	  itDiccString();
 
               bool HaySiguiente() const;
-              
+
               const String& SiguienteClave() const;
-             
+
               T& SiguienteSignificado();
 
               void Avanzar();
@@ -72,15 +72,15 @@ class DiccString {
 
              	friend class DiccString;
 		};
-		
+
 		class const_itDiccString{
 	    	public:
            	  const_itDiccString();
 
               bool HaySiguiente() const;
-              
+
               const String& SiguienteClave() const;
-             
+
               const T& SiguienteSignificado() const;
 
               void Avanzar();
@@ -93,10 +93,10 @@ class DiccString {
 
              	friend class DiccString;
 		};
-		
+
 	private:
-		
-		struct tuplaCS{			
+
+		struct tuplaCS{
 				String clave;
 				T* significado;
 				bool operator == (const tuplaCS& otra) const {
@@ -108,19 +108,19 @@ class DiccString {
 		struct Nodo {
 			Nodo(Conj<String>& c,Conj<tuplaCS>& cs);
 			~Nodo();
-			struct infoNodo{			
+			struct infoNodo{
 		    	Nodo* prox;
 				bool finPalabra;
 				typename Conj<String>::Iterador itClave;
 				typename Conj<tuplaCS>::Iterador itClaveYSign;
 			};
-			Arreglo<infoNodo> letras; 
+			Arreglo<infoNodo> letras;
 		};
 
 		Nodo* raiz;
 		Conj<String> claves;
 		Conj<tuplaCS> clavesYSignificados;
-		
+
 };
 
 template<class T>
@@ -131,7 +131,7 @@ DiccString<T>::Nodo::Nodo(Conj<String>& c,Conj<tuplaCS>& cs){
 		infoNodo iNodo;
 		iNodo.prox = NULL;
 		iNodo.finPalabra = false;
-		iNodo.itClave = c.CrearIt(); 
+		iNodo.itClave = c.CrearIt();
 		iNodo.itClaveYSign = cs.CrearIt();
 		letras.Definir(i,iNodo);
 		i++;
@@ -154,7 +154,7 @@ DiccString<T>::DiccString() {
 	claves = Conj<String>();
 	clavesYSignificados = Conj<tuplaCS>();
 	raiz = NULL;
-		
+
 }
 
 template<class T>
@@ -164,8 +164,8 @@ DiccString<T>::~DiccString(){
 		delete it.Siguiente().significado;
 		it.Avanzar();
 	}
-	delete raiz; 
-	
+	delete raiz;
+
 }
 
 template<class T>
@@ -177,7 +177,7 @@ void DiccString<T>::DefinirRapido(const String& c,const T& s){
 	Nodo* pActual = raiz;
 	Nat posicionDelCarater = (Nat)c[i];
 	while(i < c.length()-1){
-		if(pActual->letras[posicionDelCarater].prox == NULL){ 	
+		if(pActual->letras[posicionDelCarater].prox == NULL){
 			Nodo* nuevoNodo = new Nodo(claves,clavesYSignificados);
 			pActual->letras[posicionDelCarater].prox = nuevoNodo;
 		}
@@ -188,7 +188,7 @@ void DiccString<T>::DefinirRapido(const String& c,const T& s){
 	typename Conj<String>::Iterador itc = claves.AgregarRapido(c);
 	tuplaCS tcs;
 	tcs.clave = c;
- 	tcs.significado = new T(s); 
+ 	tcs.significado = new T(s);
 	typename Conj<tuplaCS>::Iterador itcs = clavesYSignificados.AgregarRapido(tcs);
 	if(pActual->letras[posicionDelCarater].prox == NULL){
 		pActual->letras[posicionDelCarater].prox = NULL;
@@ -207,7 +207,7 @@ void DiccString<T>::DefinirRapido(const String& c,const T& s){
 template<class T>
 bool DiccString<T>::Definido(const String& c) const{
 	Nat i = 0;
-	Nodo* pActual = raiz;	
+	Nodo* pActual = raiz;
 	Nat posicionDelCarater = (Nat)c[i];
 	while(i < c.length() -1  && pActual->letras[posicionDelCarater].prox != NULL){
 		pActual = pActual->letras[posicionDelCarater].prox;
@@ -222,7 +222,7 @@ const T& DiccString<T>::Significado(const String& c) const{
 	Nat i = 0;
 	Nodo* pActual = raiz;
 	Nat posicionDelCarater = (Nat)c[i];
-	while(i < c.length()-1){		
+	while(i < c.length()-1){
 		pActual = pActual->letras[posicionDelCarater].prox;
 		i++;
 		posicionDelCarater = (Nat)c[i];
@@ -236,7 +236,7 @@ T& DiccString<T>::Significado(const String& c){
 	Nat i = 0;
 	Nodo* pActual = raiz;
 	Nat posicionDelCarater = (Nat)c[i];
-	while(i < c.length()-1){		
+	while(i < c.length()-1){
 		pActual = pActual->letras[posicionDelCarater].prox;
 		i++;
 		posicionDelCarater = (Nat)c[i];
@@ -256,7 +256,7 @@ void DiccString<T>::Borrar(const String& c){
 	Nodo* pActual = raiz;
 	Nodo* anterior = raiz;
 	Nat posicionDelCarater = (Nat)c[i];
-	while(i < c.length()-1){		
+	while(i < c.length()-1){
 		anterior = pActual;
 		if(pActual->letras[posicionDelCarater].finPalabra){
 			palDef++;
@@ -341,7 +341,7 @@ DiccString<T>::itDiccString::itDiccString(DiccString<T> *d): it(d->clavesYSignif
 template<class T>
 typename DiccString<T>::itDiccString DiccString<T>::CrearIt(){
     return itDiccString(this);
-}  
+}
 
 template<class T>
 void  DiccString<T>::itDiccString::Avanzar(){
@@ -349,7 +349,7 @@ void  DiccString<T>::itDiccString::Avanzar(){
 }
 
 
-template<class T>              
+template<class T>
 const String&  DiccString<T>::itDiccString::SiguienteClave() const{
 	return it.Siguiente().clave ;
 }
@@ -364,7 +364,7 @@ template<class T>
 bool  DiccString<T>::itDiccString::HaySiguiente() const{
 	return it.HaySiguiente();
 }
-	
+
 
 template<class T>
 bool DiccString<T>::operator==(const DiccString<T>& otro)const{
@@ -408,7 +408,7 @@ DiccString<T>::const_itDiccString::const_itDiccString(const DiccString<T> *d): i
 template<class T>
 typename DiccString<T>::const_itDiccString DiccString<T>::CrearIt()const{
     return const_itDiccString(this);
-}  
+}
 
 template<class T>
 void  DiccString<T>::const_itDiccString::Avanzar(){
@@ -416,7 +416,7 @@ void  DiccString<T>::const_itDiccString::Avanzar(){
 }
 
 
-template<class T>              
+template<class T>
 const String&  DiccString<T>::const_itDiccString::SiguienteClave() const{
 	return it.Siguiente().clave ;
 }
@@ -431,8 +431,8 @@ template<class T>
 bool  DiccString<T>::const_itDiccString::HaySiguiente() const{
 	return it.HaySiguiente();
 }
-	
-template<class T>	
+
+template<class T>
 DiccString<T>::DiccString(const DiccString<T>& otro) {
 	claves = Conj<String>();
 	clavesYSignificados = Conj<tuplaCS>();
