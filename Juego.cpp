@@ -82,7 +82,10 @@ void Juego::agregarPokemon(Pokemon &p,Coordenadatp3 &coor) {
 }
 
 Jugador Juego::agregarJugador() {
-    EstadoJugador estadoJugadorNoConectado = {true, false, 0, Coordenadatp3(0,0), DiccString(""),0, Conj().CrearIt(), ConjPrior().CrearIt()};
+    DiccString<Nat> vacio;
+    Conj<Jugador>::Iterador itConj;
+    ConjPrior::Iterador itConjPrior;
+    EstadoJugador estadoJugadorNoConectado = {true, false, 0, Coordenadatp3(0,0), vacio, 0, itConj, itConjPrior};
     _jugadores.AgregarAtras(estadoJugadorNoConectado);
     Conj<Jugador>::Iterador it = _jugadoresActivos.AgregarRapido(_jugadores.Longitud());
     _jugadores[_jugadores.Longitud()].itJugadoresActivos = it;
@@ -129,15 +132,15 @@ const Mapa &Juego::mapa() const {
     }
 }
 
-const Conj<Jugador>::const_Iterador &Juego::jugadores() const {
+const Conj<Jugador>::const_Iterador Juego::jugadores() const {
     return _jugadoresActivos.CrearIt();
 }
 
-const bool &Juego::estaConectado(const Jugador &j) const {
+const bool Juego::estaConectado(const Jugador &j) const {
     return _jugadores[j].conectado;
 }
 
-const Nat &Juego::sanciones(const Jugador &j) const {
+const Nat Juego::sanciones(const Jugador &j) const {
     return _jugadores[j].sanciones;
 }
 
@@ -145,12 +148,12 @@ const Coordenadatp3 &Juego::posicion(const Jugador &j) const {
     return _jugadores[j].posicion;
 }
 
-const DiccString<String>::itDiccString &Juego::pokemons(const Jugador &j) const {
-    return _jugadores[j].capturados.CrearIt();
+const DiccString<Nat>::const_itDiccString Juego::pokemons(const Jugador &j) const {
+    return _jugadores[j].capturados.CrearItConst();
 }
 
-const Conj<Jugador> &Juego::expulsados() const {
-    Conj<Nat> res = Conj();
+const Conj<Jugador> Juego::expulsados() const {
+    Conj<Nat> res;
     Nat i = 0;
     while(i < _jugadores.Longitud()){
         if(_jugadores[i].sanciones == 5){
@@ -169,11 +172,11 @@ const Pokemon &Juego::pokemonEnPos(const Coordenadatp3 &coor) const {
     return _mapa[coor.Latitud()][coor.Longitud()].pokemon;
 }
 
-const Nat &Juego::cantMovimientosParaCaptura(const Coordenadatp3 &coor) const {
+const Nat Juego::cantMovimientosParaCaptura(const Coordenadatp3 &coor) const {
     return _mapa[coor.Latitud()][coor.Longitud()].cantMovimientos;
 }
 
-const bool &Juego::puedoAgregarPokemon(const Coordenadatp3 &coor) const {
+const bool Juego::puedoAgregarPokemon(const Coordenadatp3 &coor) const {
     bool res = false;
     if(_mapa[coor.Latitud()][coor.Longitud()].definida){
         if(_mapa[coor.Latitud()][coor.Longitud()].pokemon == ""){
@@ -183,8 +186,7 @@ const bool &Juego::puedoAgregarPokemon(const Coordenadatp3 &coor) const {
     return res;
 }
 
-const bool &Juego::hayPokemonCercano(const Coordenadatp3 &coor) const {
-    bool res = false;
+const bool Juego::hayPokemonCercano(const Coordenadatp3 &coor) const {
     //hay problema si uso const_Iterador?
     Conj<Coordenadatp3>::const_Iterador it = posicionesAledanias(coor).CrearIt();
     while(it.HaySiguiente()){
@@ -195,7 +197,7 @@ const bool &Juego::hayPokemonCercano(const Coordenadatp3 &coor) const {
             it.Avanzar();
         }
     }
-    return res;
+    return false;
 }
 
 const Coordenadatp3 &Juego::posPokemonCercano(const Coordenadatp3 &coor) const {
@@ -217,13 +219,13 @@ const Vector<Jugador> &Juego::entrenadoresPosibles(const Coordenada &coor, const
     while()
 }
 */
-const Nat &Juego::indiceRareza(const Pokemon &p) const {
+const Nat Juego::indiceRareza(const Pokemon &p) const {
 }
 
-const Nat &Juego::cantPokemonsTotales() const {
+const Nat Juego::cantPokemonsTotales() const {
 }
 
-const Nat &Juego::cantMismaEspecie(const Pokemon &p) const {
+const Nat Juego::cantMismaEspecie(const Pokemon &p) const {
 }
 
 const Conj<Coordenadatp3> &Juego::posicionesAledanias(const Coordenadatp3 &coor) const{

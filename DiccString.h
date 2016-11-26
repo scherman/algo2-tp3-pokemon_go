@@ -48,7 +48,7 @@ class DiccString {
 		DiccString<T>& operator=(const DiccString<T>& otra);
 
 		itDiccString CrearIt();
-	    const_itDiccString CrearIt() const;
+	    const_itDiccString CrearItConst() const;
 
 	    DiccString(const DiccString<T>& otro);
 
@@ -406,7 +406,7 @@ template<class T>
 DiccString<T>::const_itDiccString::const_itDiccString(const DiccString<T> *d): it(d->clavesYSignificados.CrearIt()) {}
 
 template<class T>
-typename DiccString<T>::const_itDiccString DiccString<T>::CrearIt()const{
+typename DiccString<T>::const_itDiccString DiccString<T>::CrearItConst()const{
     return const_itDiccString(this);
 }
 
@@ -437,7 +437,7 @@ DiccString<T>::DiccString(const DiccString<T>& otro) {
 	claves = Conj<String>();
 	clavesYSignificados = Conj<tuplaCS>();
 	raiz = new Nodo(claves,clavesYSignificados);
-	DiccString<T>::const_itDiccString it = otro.CrearIt();
+	DiccString<T>::const_itDiccString it = otro.CrearItConst();
 	while(it.HaySiguiente()){
 		String clave = String(it.SiguienteClave());
 		T dat = T(it.SiguienteSignificado());
