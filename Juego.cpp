@@ -78,7 +78,39 @@ Juego &Juego::crearJuego(Mapa &mapa) {
 }
 
 void Juego::agregarPokemon(Pokemon &p,Coordenadatp3 &coor) {
+    // Agrego pokemon en j.pokemones
+    EstadoPokemon estadoPokemon = {0, Conj<Coordenadatp3>()};
+    if (_pokemones.Definido(p)) {
+        estadoPokemon = _pokemones.Significado(p);
+    }
+    Conj<Coordenadatp3>::Iterador itPokemones = estadoPokemon.posiciones.AgregarRapido(coor);
+    estadoPokemon.cantTotalEspecie++;
+//    _pokemones.DefinirRapido(p, estadoPokemon);
 
+    // Agrego pokemon en j.posicionesPokemones
+    Conj<Coordenadatp3>::Iterador itPosicionesPokemones = _posicionesPokemons.AgregarRapido(coor);
+
+    // Agrego pokemon en j.mapa
+    Parcela parcela = _mapa[coor.Latitud()][coor.Longitud()];
+    parcela.hayPokemon = true;
+    parcela.pokemon = p;
+    parcela.itPosicionesPokemon = itPosicionesPokemones;
+    Conj<Coordenadatp3>::const_Iterador posicionesEnZona = posicionesAledanias(coor).CrearIt();
+    while (posicionesEnZona.HaySiguiente()) {
+        Coordenadatp3 actual = posicionesEnZona.Siguiente();
+        Conj<Jugador>::Iterador itJugadoresEnPosicion = _mapa[actual.Latitud()][actual.Longitud()].jugadoresEnPosicion.CrearIt();
+        while (itJugadoresEnPosicion.HaySiguiente()) {
+            Jugador jugador = itJugadoresEnPosicion.Siguiente();
+            ConjPrior::Iterador itJugadoresEnZona = parcela.jugadoresEnZona.Agregar(_jugadores[jugador].cantCapturados, jugador);
+            _jugadores[jugador].itJugadoresEnZona = itJugadoresEnZona;
+            itJugadoresEnPosicion.Avanzar();
+        }
+        posicionesEnZona.Avanzar();
+    }
+    parcela.cantMovimientos = 0;
+
+    // Sumo 1 en j.cantTotalPokemones
+    _cantTotalPokemones++;
 }
 
 Jugador Juego::agregarJugador() {
