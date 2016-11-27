@@ -297,7 +297,7 @@ const Coordenadatp3 &Juego::posPokemonCercano(const Coordenadatp3 &coor) const {
     Conj<Coordenadatp3>::const_Iterador it = posicionesAledanias(coor).CrearIt();
     while(it.HaySiguiente()){
         if(_mapa[it.Siguiente().Latitud()][it.Siguiente().Longitud()].pokemon != ""){
-            return it.Siguiente();
+             return it.Siguiente();
         }
         else{
             it.Avanzar();
@@ -347,7 +347,7 @@ while(i <= lataux+2){
     while (j <= lonaux+2){
         if(i >= 0 && i < _mapa.Longitud() && j >= 0 && j < _mapa[i].Longitud()){
             Coordenadatp3 nueva(i,j);
-            if (mapa().posExistente(nueva) && coor.DistEuclidea(nueva) <= 2)
+            if (mapa().posExistente(nueva) && coor.DistEuclidea(nueva) <= 4)
                 (*nuevo).AgregarRapido(nueva);
         }
         j++;
