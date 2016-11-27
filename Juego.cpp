@@ -214,6 +214,7 @@ const bool Juego::puedoAgregarPokemon(const Coordenadatp3 &coor) const {
             res = true;
         }
     }
+
     return res;
 }
 
@@ -264,6 +265,25 @@ const Nat Juego::cantMismaEspecie(const Pokemon &p) const {
     return estadoPokemon.cantTotalEspecie;
 }
 
-const Conj<Coordenadatp3> &Juego::posicionesAledanias(const Coordenadatp3 &coor) const{
 
+const Conj<Coordenadatp3> &Juego::posicionesAledanias(const Coordenadatp3 &coor) const{
+Conj<Coordenadatp3> * nuevo = new Conj<Coordenadatp3>;
+int lataux = coor.Latitud();
+int lonaux = coor.Longitud();
+int i = lataux-2;
+while(i <= lataux+2){
+    //Nat clong = coor.Longitud();
+    int j = lonaux-2;
+    while (j <= lonaux+2){
+        if(i >= 0 && i < _mapa.Longitud() && j >= 0 && j < _mapa[i].Longitud()){
+            Coordenadatp3 nueva(i,j);
+            if (mapa().posExistente(nueva) && coor.DistEuclidea(nueva) <= 2)
+                (*nuevo).AgregarRapido(nueva);
+        }
+        j++;
+    }
+    i++;
 }
+return *nuevo;
+}
+
