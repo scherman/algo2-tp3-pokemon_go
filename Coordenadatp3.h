@@ -17,7 +17,7 @@ class Coordenadatp3{
      Coordenadatp3(Nat lat,Nat lon);
      Nat Latitud()const;
      Nat Longitud() const;
-     Nat DistEuclidea(const Coordenadatp3 & otro);
+     Nat DistEuclidea(const Coordenadatp3 & otro) const;
      void CoordenadaArriba();
      void CoordenadaAbajo();
      void CoordenadaALaIzquierda();
@@ -58,7 +58,7 @@ Nat Coordenadatp3::Longitud() const{
 return longitud;
 }
 
-Nat Coordenadatp3::DistEuclidea(const Coordenadatp3 & otro){
+Nat Coordenadatp3::DistEuclidea(const Coordenadatp3 & otro) const{
     Nat latAux = 0;
     Nat lonAux = 0;
 if(latitud > otro.Latitud())
