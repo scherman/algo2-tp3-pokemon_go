@@ -275,7 +275,7 @@ const bool Juego::puedoAgregarPokemon(const Coordenadatp3 &coor) const {
     return res;
 }
 
-const bool Juego::hayPokemonCercano(const Coordenadatp3 &coor) const {
+bool Juego::hayPokemonCercano(const Coordenadatp3 &coor) const {
     //hay problema si uso const_Iterador?
     Conj<Coordenadatp3>::const_Iterador it = posicionesAledanias(coor).CrearIt();
     while(it.HaySiguiente()){
@@ -289,7 +289,7 @@ const bool Juego::hayPokemonCercano(const Coordenadatp3 &coor) const {
     return false;
 }
 
-const Coordenadatp3 &Juego::posPokemonCercano(const Coordenadatp3 &coor) const {
+Coordenadatp3 Juego::posPokemonCercano(const Coordenadatp3 &coor) const {
 //requiere que haya un pokemonCercano
     Conj<Coordenadatp3>::const_Iterador it = posicionesAledanias(coor).CrearIt();
     while(it.HaySiguiente()){
