@@ -301,14 +301,15 @@ const Coordenadatp3 &Juego::posPokemonCercano(const Coordenadatp3 &coor) const {
         }
     }
 }
-const Conj<Jugador>& Juego::entrenadoresPosibles(const Coordenadatp3& coor) const{
+ const Conj<Jugador>& Juego::entrenadoresPosibles(const Coordenadatp3& coor) const{
     //en el tp usamos un Iterador para js pero ahora es un vector...Antes usabamos un conjunto. Tendriamos que usar Conj.h?
         Conj<Jugador>* c = new Conj<Jugador>;
         Conj<Jugador>::const_Iterador it = _jugadoresActivos.CrearIt();
         while(it.HaySiguiente()){
             Nat jug = it.Siguiente();
             Coordenadatp3 tp = _jugadores[jug-1].posicion;
-            if ((*this).hayPokemonCercano(tp)){
+            bool conectado = _jugadores[jug-1].conectado;
+            if ((*this).hayPokemonCercano(tp) && conectado){
                 if(((*this).posPokemonCercano(tp) == coor) && _mapa[coor.Latitud()][coor.Longitud()].
                    conexiones[tp.Latitud()][tp.Longitud()]){
                     (*c).AgregarRapido(jug);
@@ -318,6 +319,7 @@ const Conj<Jugador>& Juego::entrenadoresPosibles(const Coordenadatp3& coor) cons
         }
         return *c;
 }
+
 const Nat Juego::indiceRareza(const Pokemon &p) const {
     EstadoPokemon estadoPokemon = _pokemones.Significado(p);
     return 100 - (estadoPokemon.cantTotalEspecie * 100) / _cantTotalPokemones;

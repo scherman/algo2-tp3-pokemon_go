@@ -43,8 +43,8 @@ public:
     const Pokemon& pokemonEnPos(const Coordenadatp3 &coor) const;
     const Nat cantMovimientosParaCaptura(const Coordenadatp3 &coor) const;
     const bool puedoAgregarPokemon(const Coordenadatp3 &coor) const;
-    const bool hayPokemonCercano(const Coordenadatp3 &coor) const;
-    const Coordenadatp3& posPokemonCercano(const Coordenadatp3 &coor) const;
+    bool hayPokemonCercano(const Coordenadatp3 &coor) const;
+    Coordenadatp3 posPokemonCercano(const Coordenadatp3 &coor) const;
     const Conj<Jugador>& entrenadoresPosibles(const Coordenadatp3& coor) const;
     const Nat indiceRareza(const Pokemon &p) const;
     const Nat cantPokemonsTotales() const;
