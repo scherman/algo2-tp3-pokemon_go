@@ -45,7 +45,7 @@ public:
     const bool puedoAgregarPokemon(const Coordenadatp3 &coor) const;
     const bool hayPokemonCercano(const Coordenadatp3 &coor) const;
     const Coordenadatp3& posPokemonCercano(const Coordenadatp3 &coor) const;
-    const Vector<Jugador>& entrenadoresPosibles(const Coordenadatp3& coor, const Vector<Jugador> &js) const;
+    const Conj<Jugador>& entrenadoresPosibles(const Coordenadatp3& coor) const;
     const Nat indiceRareza(const Pokemon &p) const;
     const Nat cantPokemonsTotales() const;
     const Nat cantMismaEspecie(const Pokemon &p) const;

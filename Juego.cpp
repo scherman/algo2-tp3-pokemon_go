@@ -46,7 +46,7 @@ Juego::Juego(Mapa &m) {
         lon = 0;
         while(lon <= mLong){
             Parcela parcelaNoDef ;
-            if(m.posExistente(Coordenadatp3(lat,lon))){                
+            if(m.posExistente(Coordenadatp3(lat,lon))){
                 parcelaNoDef.conexiones = caminos;
                 parcelaNoDef.definida = true;
                 Conj<Coordenadatp3>::const_Iterador itDos = m.coordenadas().CrearIt();
@@ -162,9 +162,9 @@ void Juego::moverse(Jugador &j,Coordenadatp3 &coor) {
 			while (itCapturados.HaySiguiente())
 			{
 				string clave = itCapturados.Siguiente();
-				if (_pokemones.Significado(clave).cantTotalEspecie == _jugadores[j].capturados.Significado(clave)) 
+				if (_pokemones.Significado(clave).cantTotalEspecie == _jugadores[j].capturados.Significado(clave))
 					_pokemones.Borrar(clave);
-				else 
+				else
 					_pokemones.Significado(clave).cantTotalEspecie = _pokemones.Significado(clave).cantTotalEspecie - _jugadores[j].capturados.Significado(clave);
 				itCapturados.Avanzar();
 				_jugadores[j].capturados.Borrar(clave);
@@ -179,7 +179,7 @@ void Juego::moverse(Jugador &j,Coordenadatp3 &coor) {
 		if ((hayPokemonCercano(posAnterior) && posPokemonCercano(posAnterior) == it.Siguiente()) || !hayPokemonCercano(posAnterior)) {
 			if (hayPokemonCercano(coor) && posPokemonCercano(coor) == it.Siguiente()) {
 				Coordenadatp3 posPok = posPokemonCercano(coor);
-				//Segun el tp en realidad es jugadoresEnZona 
+				//Segun el tp en realidad es jugadoresEnZona
 				_jugadores[j].itJugadoresActivos = _mapa[posPok.Latitud()][posPok.Longitud()].jugadoresEnPosicion.Agregar(_jugadores[j].cantCapturados);
 				_mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos = 0;
 			}
@@ -259,9 +259,6 @@ const Conj<Coordenadatp3> &Juego::posConPokemons() const {
     return _posicionesPokemons;
 }
 
-const Pokemon &Juego::pokemonEnPos(const Coordenadatp3 &coor) const {
-    return _mapa[coor.Latitud()][coor.Longitud()].pokemon;
-}
 
 const Nat Juego::cantMovimientosParaCaptura(const Coordenadatp3 &coor) const {
     return _mapa[coor.Latitud()][coor.Longitud()].cantMovimientos;
@@ -356,4 +353,3 @@ while(i <= lataux+2){
 }
 return *nuevo;
 }
-
