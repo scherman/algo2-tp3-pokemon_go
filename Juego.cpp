@@ -112,6 +112,7 @@ void Juego::agregarPokemon(Pokemon &p,Coordenadatp3 &coor) {
 }
 
 Jugador Juego::agregarJugador() {
+    //no habria basura al inicializar?
     DiccString<Nat> vacio;
     Conj<Jugador>::Iterador itConj;
     ConjPrior::Iterador itConjPrior;
@@ -244,7 +245,7 @@ const DiccString<Nat>::const_itDiccString Juego::pokemons(const Jugador &j) cons
 }
 
 const Conj<Jugador> Juego::expulsados() const {
-    Conj<Nat> res;
+    Conj<Nat> res = Conj<Nat>();
     Nat i = 0;
     while(i < _jugadores.Longitud()){
         if(_jugadores[i].sanciones == 5){
