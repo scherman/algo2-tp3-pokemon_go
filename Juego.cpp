@@ -137,7 +137,7 @@ void Juego::conectarse(Jugador &j,Coordenadatp3 &coor) {
         Coordenadatp3 posPokemon = posPokemonCercano(coor);
         (_mapa)[posPokemon.Latitud()][posPokemon.Longitud()].cantMovimientos = 0;
         (_jugadores)[j-1].itJugadoresEnZona
-        = (_mapa)[posPokemon.Latitud()][posPokemon.Longitud()].jugadoresEnZona.Agregar(_jugadores[j].cantCapturados,j);
+        = (_mapa)[posPokemon.Latitud()][posPokemon.Longitud()].jugadoresEnZona.Agregar(_jugadores[j-1].cantCapturados,j);
     }
 }
 
@@ -158,8 +158,9 @@ void Juego::moverse(Jugador &j,Coordenadatp3 &coor) {
 	bool eliminadoDeZona = false;
 	if (hayPokemonCercano(posAnterior)) {
 		if (!(hayPokemonCercano(coor) && posPokemonCercano(posAnterior) == posPokemonCercano(coor))) {
-			_jugadores[j-1].itJugadoresEnZona.EliminarSiguienteElem();
-			_jugadores[j-1].itJugadoresEnZona = ConjPrior().CrearIt();
+            _jugadores[j-1].itJugadoresEnZona.EliminarSiguienteElem();
+			//necesario esta linea? la de abajo
+            _jugadores[j-1].itJugadoresEnZona = ConjPrior().CrearIt();
 			eliminadoDeZona = true;
 		}
 	}
@@ -185,33 +186,48 @@ void Juego::moverse(Jugador &j,Coordenadatp3 &coor) {
 				_jugadores[j-1].itJugadoresEnZona.EliminarSiguienteElem();
 		}
 	}
-	Conj<Coordenadatp3>::Iterador it = _posicionesPokemons.CrearIt();
+    //agregue esta linea porque al hacer eliminarSiguiente en la linea 217, despues hacia it.Avanzar y eso rompia todo
+    //Al hacer un nuevo conjunto se soluciona, no entiendo bien porque...
+    Conj<Coordenadatp3> pokes = _posicionesPokemons;
+	Conj<Coordenadatp3>::Iterador it = pokes.CrearIt();
 	while (it.HaySiguiente()) {
         //no avanzaba el iterador
-		if ((hayPokemonCercano(posAnterior) && posPokemonCercano(posAnterior) == it.Siguiente()) || !hayPokemonCercano(posAnterior)) {
+        //no entraba a la posicion del pokemon que no era ni posAnterior ni la nueva posicion, por lo tanto
+        //no actualizabas cantMovimientos para las demas posiciones que no se veian afectadas.
+        //Ahi se soluciona el tema, pero creo que el primer if estaria de mas. Por las dudas lo dejo, y lo miras vos
+        //y acomodalo si queres. Le agregue el HayPokemonCercano(it.Siguiente()), que es algo obvio ya que
+        //estas iterando posiciones de pokemons no mas. Por eso se podria sacar.
+		if (hayPokemonCercano(it.Siguiente()) || (hayPokemonCercano(posAnterior) && posPokemonCercano(posAnterior) == it.Siguiente()) || !hayPokemonCercano(posAnterior)) {
 			if (hayPokemonCercano(coor) && posPokemonCercano(coor) == it.Siguiente()) {
 				Coordenadatp3 posPok = posPokemonCercano(coor);
 				//Segun el tp en realidad es jugadoresEnZona
 				_jugadores[j-1].itJugadoresActivos = _mapa[posPok.Latitud()][posPok.Longitud()].jugadoresEnPosicion.Agregar(_jugadores[j-1].cantCapturados);
 				_mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos = 0;
+                //faltaba agregar al jugador al itJugadoresEnZona.
+                _jugadores[j-1].itJugadoresEnZona = _mapa[posPok.Latitud()][posPok.Longitud()].jugadoresEnZona.Agregar(_jugadores[j-1].cantCapturados,j);
+                it.Avanzar();
 			}
 			else {
 				Coordenadatp3 posPok = it.Siguiente();
 				_mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos = _mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos + 1;
 				if (_mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos == 10 && _mapa[posPok.Latitud()][posPok.Longitud()].jugadoresEnZona.Cardinal() != 0) {
 					Parcela pos = _mapa[posPok.Latitud()][posPok.Longitud()];
-					pos.hayPokemon = false;
-					pos.itPosicionesPokemon.EliminarSiguiente();
-					Jugador jugadorCapturante = pos.jugadoresEnZona.Minimo() - 1;
-					pos.jugadoresEnZona = ConjPrior();
+                    //estabas usandoo pos para cambiar los valores internos y tengo entendido que al pasarlo por copia
+                    //no se cambian los valores internos. No estoy del todo seguro pero en AgregarJugadores pasaba eso.
+                    _mapa[posPok.Latitud()][posPok.Longitud()].hayPokemon = false;
+                    _mapa[posPok.Latitud()][posPok.Longitud()].itPosicionesPokemon.EliminarSiguiente();
+					Jugador jugadorCapturante = _mapa[posPok.Latitud()][posPok.Longitud()].jugadoresEnZona.Minimo() - 1;
+                    _mapa[posPok.Latitud()][posPok.Longitud()].jugadoresEnZona = ConjPrior();
 					DiccString<Nat> dicc = _jugadores[jugadorCapturante].capturados;
-					if (dicc.Definido(pos.pokemon))
-						dicc.Significado(pos.pokemon) = dicc.Significado(pos.pokemon) + 1;
-					else
-						dicc.DefinirRapido(pos.pokemon, 1);
-					    pos.cantMovimientos = 0;
+					if (dicc.Definido(pos.pokemon)){
+                        _jugadores[jugadorCapturante].capturados.Significado(_mapa[posPok.Latitud()][posPok.Longitud()].pokemon) = dicc.Significado(pos.pokemon) + 1;
+                    }
+					else{
+                        _jugadores[jugadorCapturante].capturados.DefinirRapido(_mapa[posPok.Latitud()][posPok.Longitud()].pokemon, 1);
+                        _mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos = 0;
 					    _jugadores[jugadorCapturante].cantCapturados = _jugadores[jugadorCapturante].cantCapturados + 1;
                         it.Avanzar();
+                    }
 				}
                 else{
                     it.Avanzar();

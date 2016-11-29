@@ -117,20 +117,26 @@ void test_agregar_jugadores(){
   game.conectarse(js, b);
  // Coordenadatp3 posPoke = game.posPokemonCercano(a);
   game.moverse(js,c1);
-  /* hice mover a js de b a c1, tendria que aumentar, cantMovimientos de (0,1) o (1,2)? Solo aumenta
+  /* hice mover a js de b a c1, tendria que aumentar, cantMovimientos de (0,1)  Solo aumenta
    * los movimientos para captura de b1, que no se si tendrian que aumentar directamente.
+   * Funciona moverse, al registrar la captura de un pokemon, no probe bien si se le asignaba correctamente
+   * pero el mover ahora funciona, mejor explicado los cambios en el codigo de moverse.
+   *
+   * 
    */
-  //game.moverse(js,b1);
-  //game.moverse(js,c1);
-  //game.moverse(js,b1);
-  //game.moverse(js,c1);
-  //game.moverse(js,b1);
-  //game.moverse(js,c1);
-  //game.moverse(js,b1);
+  game.moverse(js,b1);
+  game.moverse(js,c1);
+  game.moverse(js,b1);
+  game.moverse(js,c1);
+  game.moverse(js,b1);
+  game.moverse(js,c1);
+  game.moverse(js,b1);
+  game.moverse(js,c1);
+  game.moverse(js,b1);
   //game.desconectarse(j);
   //ASSERT( game.jugadores().Siguiente() == game1.jugadores().Siguiente() );
   //ASSERT(game.estaConectado(1) == false);
-  ASSERT(game.cantMovimientosParaCaptura(a) == 1);
+  ASSERT(game.cantMovimientosParaCaptura(a1) == 0);
   //ASSERT( game.posicion(4) == Coordenadatp3(0,0) );
   //ASSERT( game.sanciones(4) == 0 );
   //ASSERT( game.expulsados() == Conj<Jugador>() );
