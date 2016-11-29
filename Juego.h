@@ -25,8 +25,6 @@ public:
 
     void agregarPokemon(Pokemon &p, Coordenadatp3 &coor);
     Jugador agregarJugador();
-    //en el disenio no nos pasan ningun parametro. El nuevo jugador sera el largo de _jugadores
-    //Jugador agregarJugador(Jugador &j);
     void conectarse(Jugador &j, Coordenadatp3 &coor);
     void desconectarse(Jugador &j);
     void moverse(Jugador &j, Coordenadatp3 &coor);
