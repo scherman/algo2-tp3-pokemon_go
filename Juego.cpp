@@ -86,7 +86,13 @@ void Juego::agregarPokemon(Pokemon &p,Coordenadatp3 &coor) {
     //}
     Conj<Coordenadatp3>::Iterador itPokemones = estadoPokemon.posiciones.AgregarRapido(coor);
     estadoPokemon.cantTotalEspecie++;
-    _pokemones.DefinirRapido(p, estadoPokemon);
+	if (_pokemones.Definido(p)) {
+		EstadoPokemon estadoDicc = _pokemones.Significado(p);
+		estadoDicc.posiciones.AgregarRapido(coor);
+		estadoDicc.cantTotalEspecie++;
+	}
+	else
+		_pokemones.DefinirRapido(p, estadoPokemon);
 
     // Agrego pokemon en j.posicionesPokemones
     Conj<Coordenadatp3>::Iterador itPosicionesPokemones = _posicionesPokemons.AgregarRapido(coor);

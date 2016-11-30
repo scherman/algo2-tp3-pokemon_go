@@ -209,6 +209,8 @@ bool DiccString<T>::Definido(const String& c) const{
 	Nat i = 0;
 	Nodo* pActual = raiz;
 	Nat posicionDelCarater = (Nat)c[i];
+	if (pActual == NULL)
+		return false;
 	while(i < c.length() -1  && pActual->letras[posicionDelCarater].prox != NULL){
 		pActual = pActual->letras[posicionDelCarater].prox;
 		i++;
