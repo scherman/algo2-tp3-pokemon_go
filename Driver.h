@@ -5,6 +5,7 @@
 #include "aed2/Dicc.h"
 #include "aed2/TiposBasicos.h"
 #include "TiposJuego.h"
+#include "Juego.h"
 
 using namespace aed2;
 
@@ -119,7 +120,9 @@ class Driver {
 	 * TODO: Va a ser necesario instanciar privadamente el Modulo principal *
 	 * con el cuál interactuar. Además, pueden declarar todas las		   *
 	 * funciones auxiliares que les hagan falta.							*
-	 ************************************************************************/  
+	 ************************************************************************/
+
+    Juego *_juego;
 
 }; // class Driver
 
