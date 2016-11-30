@@ -81,18 +81,14 @@ void Juego::agregarPokemon(Pokemon &p,Coordenadatp3 &coor) {
     //se estaba creando una variable parcela, a la que se le asiganba la pos del mapa
     //pero al ser por copia, no modificaba los valores originales del mapa.
     EstadoPokemon estadoPokemon = {0, Conj<Coordenadatp3>()};
-    //if (_pokemones.Definido(p)) {
-    //    estadoPokemon = _pokemones.Significado(p);
-    //}
+	if (_pokemones.Definido(p)) {
+		estadoPokemon = _pokemones.Significado(p);
+		_pokemones.Borrar(p);
+	}
+    
     Conj<Coordenadatp3>::Iterador itPokemones = estadoPokemon.posiciones.AgregarRapido(coor);
     estadoPokemon.cantTotalEspecie++;
-	if (_pokemones.Definido(p)) {
-		EstadoPokemon estadoDicc = _pokemones.Significado(p);
-		estadoDicc.posiciones.AgregarRapido(coor);
-		estadoDicc.cantTotalEspecie++;
-	}
-	else
-		_pokemones.DefinirRapido(p, estadoPokemon);
+    _pokemones.DefinirRapido(p, estadoPokemon);
 
     // Agrego pokemon en j.posicionesPokemones
     Conj<Coordenadatp3>::Iterador itPosicionesPokemones = _posicionesPokemons.AgregarRapido(coor);
