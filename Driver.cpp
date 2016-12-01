@@ -2,12 +2,16 @@
 
 // Instanciar un mapa y un juego 
 
-Driver::Driver(const Conj<Coordenada> &cs) : _juego(_mapa) {
+Mapa & Driver::crearMapa(const Conj<Coordenada> &cs) {
     for (Conj<Coordenada>::const_Iterador it = cs.CrearIt(); it.HaySiguiente(); it.Avanzar()) {
         Coordenada actual = it.Siguiente();
         Coordenadatp3 coor = Coordenadatp3(actual.latitud(), actual.longitud());
-        _mapa.agregarCoor(coor);
+        _mapa.agregarCoor(coor); // Falla esta linea wtf
     }
+    return _mapa;
+}
+
+Driver::Driver(const Conj<Coordenada> &cs) : _juego(crearMapa(cs)) {
 }
 
 Driver::~Driver() {

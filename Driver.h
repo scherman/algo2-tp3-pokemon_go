@@ -121,7 +121,7 @@ class Driver {
 	 * con el cuál interactuar. Además, pueden declarar todas las		   *
 	 * funciones auxiliares que les hagan falta.							*
 	 ************************************************************************/
-
+    Mapa & crearMapa(const Conj<Coordenada> &cs);
     Juego _juego;
     Mapa _mapa;
 

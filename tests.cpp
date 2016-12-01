@@ -187,11 +187,49 @@ c.Agregar(Coordenada(1,2));             // 4
    */
 }
 
+void test_entrenadoresPosibles() {
+    Conj<Coordenada> cc;
+    cc.Agregar(Coordenada(0,0));
+    cc.Agregar(Coordenada(0,1));
+    cc.Agregar(Coordenada(0,2));
+    cc.Agregar(Coordenada(1,2));
+    cc.Agregar(Coordenada(10,0));
+    cc.Agregar(Coordenada(1,4));
+
+    Driver driver (cc);
+//    driver.agregarJugador();
+//    driver.agregarJugador();
+//    driver.conectarse(1, Coordenada(0,0));
+//    driver.conectarse(2, Coordenada(0,2));
+//    driver.agregarPokemon("Pikachu", Coordenada(0,1));
+//    Conj<Jugador> jugadores = driver.entrenadoresPosibles(Coordenada(0,1));
+//    ASSERT(jugadores.Cardinal() == 2);
+
+    Mapa mapa;
+    mapa.agregarCoor(Coordenadatp3(0,0));
+    mapa.agregarCoor(Coordenadatp3(0,1));
+    mapa.agregarCoor(Coordenadatp3(0,2));
+    mapa.agregarCoor(Coordenadatp3(1,2));
+    mapa.agregarCoor(Coordenadatp3(10,0));
+    mapa.agregarCoor(Coordenadatp3(1,4));
+
+
+    Juego juego(mapa);
+    juego.agregarJugador();
+    juego.agregarJugador();
+    juego.conectarse(1, Coordenadatp3(0,0));
+    juego.conectarse(2, Coordenadatp3(0,2));
+    juego.agregarPokemon("Pikachu", Coordenadatp3(0,1));
+    Conj<Jugador> jugadores = juego.entrenadoresPosibles(Coordenadatp3(0,1));
+    ASSERT(jugadores.Cardinal() == 2);
+}
+
 
 
 int main(int argc, char **argv)
 {
-  RUN_TEST(test_constructor_con_mapa);
+    RUN_TEST(test_entrenadoresPosibles)
+//  RUN_TEST(test_constructor_con_mapa);
   //RUN_TEST(test_agregar_jugadores);
   //RUN_TEST(test_agregar_pokemones);
   //RUN_TEST(test_conectarse);
