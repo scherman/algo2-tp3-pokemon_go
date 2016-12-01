@@ -304,16 +304,6 @@ const DiccString<Nat>::const_itDiccString Juego::pokemons(const Jugador &j) cons
 }
 
 const Conj<Jugador>& Juego::expulsados() const {  //testear++++++++++++++++++++++++
-    /*
-    Conj<Jugador> res ;
-    Nat i = 1;
-    while(i <= _jugadores.Longitud()){
-        if(_jugadores[i-1].sanciones >= 5){
-            res.AgregarRapido(i);
-        }
-        i++;
-    }
-    */
     return expuls;
 }
 
@@ -373,24 +363,22 @@ const Conj<Coordenadatp3> &Juego::posConPokemons() const {
     return it.Siguiente();
 }
 
-    const Conj<Jugador>& Juego::entrenadoresPosibles(const Coordenadatp3& coor) const{//testear ++++++++++++++++++
-    //en el tp usamos un Iterador para js pero ahora es un vector...Antes usabamos un conjunto. Tendriamos que usar Conj.h?
-        Conj<Jugador>* c = new Conj<Jugador>;
-
-        Conj<Jugador>::const_Iterador it = _jugadoresActivos.CrearIt();
-        while(it.HaySiguiente()){
-            Nat jug = it.Siguiente();
-            Coordenadatp3 tp = _jugadores[jug-1].posicion;
-            bool conectado = _jugadores[jug-1].conectado;
-            if ((*this).hayPokemonCercano(tp) && conectado){
-                if(((*this).posPokemonCercano(tp) == coor) && _mapa[coor.Latitud()][coor.Longitud()].
-                   conexiones[tp.Latitud()][tp.Longitud()]){
-                    (*c).AgregarRapido(jug);
-                }
+const Conj<Jugador> Juego::entrenadoresPosibles(const Coordenadatp3& coor) const{
+    Conj<Jugador> c;
+    Conj<Jugador>::const_Iterador it = _jugadoresActivos.CrearIt();
+    while(it.HaySiguiente()){
+        Nat jug = it.Siguiente();
+        Coordenadatp3 tp = _jugadores[jug-1].posicion;
+        bool conectado = _jugadores[jug-1].conectado;
+        if ((*this).hayPokemonCercano(tp) && conectado){
+            if(((*this).posPokemonCercano(tp) == coor) && _mapa[coor.Latitud()][coor.Longitud()].
+               conexiones[tp.Latitud()][tp.Longitud()]){
+                c.AgregarRapido(jug);
             }
-            it.Avanzar();
         }
-        return *c;
+        it.Avanzar();
+    }
+    return c;
 }
 
 

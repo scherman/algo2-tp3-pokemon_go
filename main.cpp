@@ -26,8 +26,8 @@ cc.agregarCoor(e);               //      0    1    2    3    4    5    6    7   
  cc.agregarCoor(w);
  cout<<"cantidad de elementos de mapa : "<<cc.coordenadas().Cardinal()<<endl;
   Juego j(cc);
-  
-  /*
+
+
   cout<<"cantidad de elementos de mapa de juego : "<<j.mapa().coordenadas().Cardinal()<<endl;
   Mapa k = j.mapa();
   if(k.hayCamino(a,d))
@@ -104,7 +104,7 @@ while(z.HaySiguiente()){
     z.Avanzar();
 }
 
-/*
+
 //test diccstring
 DiccString<Nat> dic ;
 //dic.DefinirRapido("juan",2);
@@ -128,7 +128,7 @@ while(itd.HaySiguiente()){
     cout<<"("<<itd.SiguienteClave()<<" , "<<itd.SiguienteSignificado()<<")"<<endl;
     itd.Avanzar();
 }
-*/
+
 
 //testeo moverse ++++++++++++++++++++++++++ testear mas casos +++++++++++++++++++++++++++++++++++++++
 //++++++++++++++++++++++++++++++++ testear si borra los pokemones capturados ++++++++++++++++++++++++
@@ -247,4 +247,3 @@ while(con.HaySiguiente()){
 cout<<"rareza de perez : "<<j.indiceRareza("perez")<<endl;
 */
 }
-
