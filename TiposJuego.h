@@ -13,7 +13,7 @@ public:
 	Coordenada(Nat latitud, Nat longitud) : _latitud(latitud), _longitud(longitud) {}
 
     const Nat& latitud() const {return _latitud;};
-    const Nat& longitud() const {return _latitud;};
+    const Nat& longitud() const {return _longitud;};
     const Nat& distEuclidea(const Coordenada &coor) const;
     const Coordenada& coordenadaArriba() const;
     const Coordenada& coordenadaAbajo() const;
