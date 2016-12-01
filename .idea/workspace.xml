@@ -12,9 +12,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f943436-0822-4c04-a88d-12050f58afda" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/algo2-tp3-pokemon_go.iml" afterPath="$PROJECT_DIR$/.idea/algo2-tp3-pokemon_go.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DiccString.h" afterPath="$PROJECT_DIR$/DiccString.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Driver.cpp" afterPath="$PROJECT_DIR$/Driver.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Driver.h" afterPath="$PROJECT_DIR$/Driver.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Juego.cpp" afterPath="$PROJECT_DIR$/Juego.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Juego.h" afterPath="$PROJECT_DIR$/Juego.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests.cpp" afterPath="$PROJECT_DIR$/tests.cpp" />
     </list>
     <ignored path="algo2-tp3-pokemon_go.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,8 +41,8 @@
       <file leaf-file-name="tests.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3465">
-              <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+            <state relative-caret-position="672">
+              <caret line="33" column="21" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -47,7 +51,7 @@
       <file leaf-file-name="Juego.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Juego.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
+            <state relative-caret-position="7329">
               <caret line="349" column="24" selection-start-line="349" selection-start-column="23" selection-end-line="349" selection-end-column="24" />
               <folding />
             </state>
@@ -58,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/Driver.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="335">
-              <caret line="124" column="17" selection-start-line="124" selection-start-column="17" selection-end-line="124" selection-end-column="17" />
+              <caret line="124" column="10" selection-start-line="124" selection-start-column="10" selection-end-line="124" selection-end-column="10" />
               <folding>
                 <element signature="e#37#59#0" expanded="true" />
               </folding>
@@ -69,28 +73,18 @@
       <file leaf-file-name="Juego.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Juego.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+            <state relative-caret-position="-273">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Driver.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Driver.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Driver.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3171">
-              <caret line="151" column="37" selection-start-line="151" selection-start-column="37" selection-end-line="151" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Coordenadatp3.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Coordenadatp3.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="21">
+              <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -99,7 +93,7 @@
       <file leaf-file-name="Mapa.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mapa.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="273">
               <caret line="13" column="9" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="9" />
               <folding />
             </state>
@@ -126,11 +120,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DiccString.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DiccString.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DiccString.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="171" column="49" selection-start-line="171" selection-start-column="46" selection-end-line="171" selection-end-column="49" />
+            <state relative-caret-position="349">
+              <caret line="407" column="17" selection-start-line="407" selection-start-column="17" selection-end-line="407" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -145,17 +139,17 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/main.cpp" />
-        <option value="$PROJECT_DIR$/tests.cpp" />
         <option value="$PROJECT_DIR$/aed2/ConjAcotado.h" />
         <option value="$PROJECT_DIR$/Mapa.h" />
         <option value="$PROJECT_DIR$/TiposJuego.h" />
         <option value="$PROJECT_DIR$/ConjPrior.h" />
-        <option value="$PROJECT_DIR$/DiccString.h" />
         <option value="$PROJECT_DIR$/Juego.h" />
         <option value="$PROJECT_DIR$/Juego.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/tests.cpp" />
         <option value="$PROJECT_DIR$/Driver.h" />
         <option value="$PROJECT_DIR$/Driver.cpp" />
+        <option value="$PROJECT_DIR$/DiccString.h" />
       </list>
     </option>
   </component>
@@ -424,11 +418,12 @@
       <workItem from="1479669879772" duration="1169000" />
       <workItem from="1480117153181" duration="9613000" />
       <workItem from="1480476189826" duration="4028000" />
+      <workItem from="1480559833128" duration="780000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30513000" />
+    <option name="totallyTimeSpent" value="31293000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -708,7 +703,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -763,7 +757,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mapa.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="273">
           <caret line="13" column="9" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="9" />
           <folding />
         </state>
@@ -777,32 +771,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Juego.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Driver.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="124" column="17" selection-start-line="124" selection-start-column="17" selection-end-line="124" selection-end-column="17" />
-          <folding>
-            <element signature="e#37#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DiccString.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="171" column="49" selection-start-line="171" selection-start-column="46" selection-end-line="171" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DiccString.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -811,34 +779,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Juego.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7329">
+          <caret line="349" column="24" selection-start-line="349" selection-start-column="23" selection-end-line="349" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TiposJuego.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        <state relative-caret-position="202">
+          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3465">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+        <state relative-caret-position="672">
+          <caret line="33" column="21" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Juego.cpp">
+    <entry file="file://$PROJECT_DIR$/Driver.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="349" column="24" selection-start-line="349" selection-start-column="23" selection-end-line="349" selection-end-column="24" />
-          <folding />
+        <state relative-caret-position="335">
+          <caret line="124" column="10" selection-start-line="124" selection-start-column="10" selection-end-line="124" selection-end-column="10" />
+          <folding>
+            <element signature="e#37#59#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Driver.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3171">
-          <caret line="151" column="37" selection-start-line="151" selection-start-column="37" selection-end-line="151" selection-end-column="37" />
+        <state relative-caret-position="21">
+          <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Juego.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-273">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DiccString.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="407" column="17" selection-start-line="407" selection-start-column="17" selection-end-line="407" selection-end-column="17" />
           <folding />
         </state>
       </provider>

@@ -34,7 +34,7 @@ class DiccString {
 	  	class const_itDiccString;
 	  	friend class itConj;
 
-		DiccString();		
+		DiccString();
 		~DiccString();
 		void DefinirRapido(const String&,const T&);
 		bool Definido(const String&) const;
@@ -206,17 +206,21 @@ void DiccString<T>::DefinirRapido(const String& c,const T& s){
 
 template<class T>
 bool DiccString<T>::Definido(const String& c) const{
+if (raiz != NULL){
 	Nat i = 0;
 	Nodo* pActual = raiz;
 	Nat posicionDelCarater = (Nat)c[i];
-	if (pActual == NULL)
-		return false;
 	while(i < c.length() -1  && pActual->letras[posicionDelCarater].prox != NULL){
 		pActual = pActual->letras[posicionDelCarater].prox;
 		i++;
 		posicionDelCarater = (Nat)c[i];
 	}
 	return (i + 1  == c.length()) && pActual->letras[posicionDelCarater].finPalabra;
+
+} else {
+return false;
+}
+
 }
 
 template<class T>
@@ -394,7 +398,7 @@ DiccString<T>& DiccString<T>::operator=(const DiccString<T>& otra)
 	claves = Conj<String>();
 	clavesYSignificados = Conj<tuplaCS>();
 	raiz = new Nodo(claves,clavesYSignificados);
-	DiccString<T>::const_itDiccString it = otra.CrearIt();
+	DiccString<T>::const_itDiccString it = otra.CrearItConst();
 	while(it.HaySiguiente()){
 		String clave = String(it.SiguienteClave());
 		T dat = T(it.SiguienteSignificado());

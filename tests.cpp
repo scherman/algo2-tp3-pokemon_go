@@ -4,10 +4,14 @@
 
 #include "Driver.h"
 #include "mini_test.h"
-#include "Juego.h"
+//#include "aed2.h"//*
+//#include "TiposJuego.h"
+//#include "Juego.h"
+
+
 
 using namespace aed2;
-/*
+
 void test_constructor_con_mapa() {
   Conj<Coordenada> cc;
   cc.Agregar(Coordenada(0,0));
@@ -19,284 +23,178 @@ void test_constructor_con_mapa() {
   //  Comento porque metira un par de undefined references...
   //  Driver d(cc);
   //  ASSERT( d.mapa() == cc );
-}*/
+   bool verdad = (Coordenada(0,2) == Coordenada(0,1)) ;
 
-void test_constructor_con_mapa() {
-  Mapa m;
-  m.agregarCoor(Coordenadatp3(0,0));
-  m.agregarCoor(Coordenadatp3(1,0));
-  m.agregarCoor(Coordenadatp3(0,1));
-  m.agregarCoor(Coordenadatp3(1,1));
-  m.agregarCoor(Coordenadatp3(1,2));
-  m.agregarCoor(Coordenadatp3(2,1));
-  m.agregarCoor(Coordenadatp3(2,2));
-  m.agregarCoor(Coordenadatp3(2,8));
 
-  Juego game = Juego(m);
-  ASSERT(game.mapa().coordenadas() == m.coordenadas());
+  Nat cantd = cc.Cardinal();
+   Conj<Coordenada>::const_Iterador itcon = cc.CrearIt();
+
+  while(itcon.HaySiguiente()){
+//      std::cout <<"coord en cc : " << itcon.Siguiente().latitud << "," << itcon.Siguiente().longitud << std::endl;
+     itcon.Avanzar();
+  }
+ Driver d(cc);
 }
 
-
 void test_agregar_jugadores(){
-  //para testear: estaConectado, conectarse, agregarJugador, sanciones, posiciones, expulsado, desconectar...
-  //falta todo lo relacionado con mover/agregarPokemon
-  Mapa m;
-  m.agregarCoor(Coordenadatp3(0,0));
-  m.agregarCoor(Coordenadatp3(1,0));
-  m.agregarCoor(Coordenadatp3(0,1));
-  m.agregarCoor(Coordenadatp3(1,1));
-  m.agregarCoor(Coordenadatp3(1,2));
-  m.agregarCoor(Coordenadatp3(2,1));
-  m.agregarCoor(Coordenadatp3(2,2));
-  m.agregarCoor(Coordenadatp3(0,2));
-  m.agregarCoor(Coordenadatp3(2,0));
-  m.agregarCoor(Coordenadatp3(3,2));
-  m.agregarCoor(Coordenadatp3(2,3));
-  m.agregarCoor(Coordenadatp3(3,3));
-  m.agregarCoor(Coordenadatp3(0,3));
-  m.agregarCoor(Coordenadatp3(3,0));
-  m.agregarCoor(Coordenadatp3(1,3));
-  m.agregarCoor(Coordenadatp3(3,1));
-  m.agregarCoor(Coordenadatp3(0,4));
-  m.agregarCoor(Coordenadatp3(1,4));
-  m.agregarCoor(Coordenadatp3(2,4));
-  m.agregarCoor(Coordenadatp3(3,4));
-  m.agregarCoor(Coordenadatp3(4,4));
-  m.agregarCoor(Coordenadatp3(4,0));
-  m.agregarCoor(Coordenadatp3(4,1));
-  m.agregarCoor(Coordenadatp3(4,2));
-  m.agregarCoor(Coordenadatp3(4,3));
-  m.agregarCoor(Coordenadatp3(0,5));
-  m.agregarCoor(Coordenadatp3(1,5));
-  m.agregarCoor(Coordenadatp3(2,5));
-  m.agregarCoor(Coordenadatp3(3,5));
-  m.agregarCoor(Coordenadatp3(4,5));
-  m.agregarCoor(Coordenadatp3(5,5));
-  m.agregarCoor(Coordenadatp3(6,5));
-  m.agregarCoor(Coordenadatp3(0,6));
-  m.agregarCoor(Coordenadatp3(1,6));
-  m.agregarCoor(Coordenadatp3(2,6));
-  m.agregarCoor(Coordenadatp3(3,6));
-  m.agregarCoor(Coordenadatp3(4,6));
-  m.agregarCoor(Coordenadatp3(5,6));
-  m.agregarCoor(Coordenadatp3(6,6));
-  m.agregarCoor(Coordenadatp3(5,0));
-  m.agregarCoor(Coordenadatp3(5,1));
-  m.agregarCoor(Coordenadatp3(5,2));
-  m.agregarCoor(Coordenadatp3(5,3));
-  m.agregarCoor(Coordenadatp3(5,4));
-  m.agregarCoor(Coordenadatp3(6,0));
-  m.agregarCoor(Coordenadatp3(6,1));
-  m.agregarCoor(Coordenadatp3(6,2));
-  m.agregarCoor(Coordenadatp3(6,3));
-  m.agregarCoor(Coordenadatp3(6,4));
-  Juego game = Juego(m);
-  game.agregarJugador();
-  game.agregarJugador();
-  game.agregarJugador();
-  game.agregarJugador();
-  Juego game1 = Juego(m);
-  game1.agregarJugador();
-  game1.agregarJugador();
-  game1.agregarJugador();
-  game1.agregarJugador();
-  Coordenadatp3 a = Coordenadatp3(1,2);
-  Coordenadatp3 b = Coordenadatp3(4,6);
-  Jugador j = 1;
-  Jugador js = 2;
-  Pokemon p = "pika";
-  Pokemon q = "squirtle";
-  Pokemon g = "gyarados";
-  Coordenadatp3 a1 = Coordenadatp3(0,1);
-  Coordenadatp3 b1 = Coordenadatp3(6,6);
-  Coordenadatp3 c1 = Coordenadatp3(6,0);
-  game.agregarPokemon(p, a1 );
-  game.agregarPokemon(q, b1 );
-  game.agregarPokemon(g, c1 );
-  game.conectarse(j,a);
-  game.conectarse(js, b);
- // Coordenadatp3 posPoke = game.posPokemonCercano(a);
-  game.moverse(js,c1);
-  /* hice mover a js de b a c1, tendria que aumentar, cantMovimientos de (0,1)  Solo aumenta
-   * los movimientos para captura de b1, que no se si tendrian que aumentar directamente.
-   * Funciona moverse, al registrar la captura de un pokemon, no probe bien si se le asignaba correctamente
-   * pero el mover ahora funciona, mejor explicado los cambios en el codigo de moverse.
-   *
-   * 
-   */
-  game.moverse(js,b1);
-  game.moverse(js,c1);
-  game.moverse(js,b1);
-  game.moverse(js,c1);
-  game.moverse(js,b1);
-  game.moverse(js,c1);
-  game.moverse(js,b1);
-  game.moverse(js,c1);
-  game.moverse(js,b1);
-  //game.desconectarse(j);
-  //ASSERT( game.jugadores().Siguiente() == game1.jugadores().Siguiente() );
-  //ASSERT(game.estaConectado(1) == false);
-  ASSERT(game.cantMovimientosParaCaptura(a1) == 0);
-  //ASSERT( game.posicion(4) == Coordenadatp3(0,0) );
-  //ASSERT( game.sanciones(4) == 0 );
-  //ASSERT( game.expulsados() == Conj<Jugador>() );
+    Conj<Coordenada> cc;
+  cc.Agregar(Coordenada(0,0));
+  cc.Agregar(Coordenada(0,1));
+  cc.Agregar(Coordenada(0,2));
+  cc.Agregar(Coordenada(1,2));
+  cc.Agregar(Coordenada(10,0));
+  cc.Agregar(Coordenada(1,4));
+
+   Driver d(cc);
+    std::cout << "jugador agregado : " << d.agregarJugador() << endl;
 }
 
 void test_agregar_pokemones(){
-  Mapa m;
-  m.agregarCoor(Coordenadatp3(0,0));
-  m.agregarCoor(Coordenadatp3(1,0));
-  m.agregarCoor(Coordenadatp3(0,1));
-  m.agregarCoor(Coordenadatp3(1,1));
-  m.agregarCoor(Coordenadatp3(1,2));
-  m.agregarCoor(Coordenadatp3(2,1));
-  m.agregarCoor(Coordenadatp3(2,2));
-  m.agregarCoor(Coordenadatp3(0,2));
-  m.agregarCoor(Coordenadatp3(2,0));
-  m.agregarCoor(Coordenadatp3(3,2));
-  m.agregarCoor(Coordenadatp3(2,3));
-  m.agregarCoor(Coordenadatp3(3,3));
-  m.agregarCoor(Coordenadatp3(0,3));
-  m.agregarCoor(Coordenadatp3(3,0));
-  m.agregarCoor(Coordenadatp3(1,3));
-  m.agregarCoor(Coordenadatp3(3,1));
-  m.agregarCoor(Coordenadatp3(0,4));
-  m.agregarCoor(Coordenadatp3(1,4));
-  m.agregarCoor(Coordenadatp3(2,4));
-  m.agregarCoor(Coordenadatp3(3,4));
-  m.agregarCoor(Coordenadatp3(4,4));
-  m.agregarCoor(Coordenadatp3(4,0));
-  m.agregarCoor(Coordenadatp3(4,1));
-  m.agregarCoor(Coordenadatp3(4,2));
-  m.agregarCoor(Coordenadatp3(4,3));
-  m.agregarCoor(Coordenadatp3(0,5));
-  m.agregarCoor(Coordenadatp3(1,5));
-  m.agregarCoor(Coordenadatp3(2,5));
-  m.agregarCoor(Coordenadatp3(3,5));
-  m.agregarCoor(Coordenadatp3(4,5));
-  m.agregarCoor(Coordenadatp3(5,5));
-  m.agregarCoor(Coordenadatp3(6,5));
-  m.agregarCoor(Coordenadatp3(0,6));
-  m.agregarCoor(Coordenadatp3(1,6));
-  m.agregarCoor(Coordenadatp3(2,6));
-  m.agregarCoor(Coordenadatp3(3,6));
-  m.agregarCoor(Coordenadatp3(4,6));
-  m.agregarCoor(Coordenadatp3(5,6));
-  m.agregarCoor(Coordenadatp3(6,6));
-  m.agregarCoor(Coordenadatp3(5,0));
-  m.agregarCoor(Coordenadatp3(5,1));
-  m.agregarCoor(Coordenadatp3(5,2));
-  m.agregarCoor(Coordenadatp3(5,3));
-  m.agregarCoor(Coordenadatp3(5,4));
-  m.agregarCoor(Coordenadatp3(6,0));
-  m.agregarCoor(Coordenadatp3(6,1));
-  m.agregarCoor(Coordenadatp3(6,2));
-  m.agregarCoor(Coordenadatp3(6,3));
-  m.agregarCoor(Coordenadatp3(6,4));
-
-
-  Juego game = Juego(m);
-  Pokemon p = "pika";
-  Pokemon q = "squirtle";
-  Pokemon g = "gyarados";
-  Coordenadatp3 a = Coordenadatp3(0,1);
-  Coordenadatp3 b = Coordenadatp3(6,6);
-  Coordenadatp3 c = Coordenadatp3(6,0);
-  game.agregarPokemon(p, a );
-  game.agregarPokemon(q, b );
-  game.agregarPokemon(g, c );
-  //segmentation fault, al mirar Definido en Arreglo.
- // ASSERT( game.cantMismaEspecie(p) == 1 );
- // ASSERT(game.cantPokemonsTotales() == 3 );
-  ASSERT(game.cantPokemonsTotales() == 3);
+ Conj<Coordenada> c;
+  Coordenada ca(0,0);               //10                                                  (10,0)
+  c.Agregar(ca);                    // 9
+    Coordenada cb(0,1); //p         // 8
+  c.Agregar(cb);                    // 7
+    Coordenada cd(0,2);             // 6
+  c.Agregar(cd);                    // 5
+    Coordenada ce(1,2);             // 4
+  c.Agregar(ce);                    // 3
+    Coordenada cf(10,0);//q         // 2
+  c.Agregar(cf);                    // 1           (1,2)     (1,4)(1,5)(1,6)
+    Coordenada cg(1,4);             // 0 (0,0)(0,1)(0,2)
+  c.Agregar(cg);                    //     0    1    2    3    4    5    6    7    8    9    10
+    Coordenada ch(1,6);//r
+  c.Agregar(ch);
+    Coordenada ci(1,5);
+  c.Agregar(ci);
+   Driver d(c);
+   Pokemon p = "juan";
+   Pokemon q = "pedro";
+   Pokemon r = "juan";
+   d.agregarPokemon(r,ch);
+   d.agregarPokemon(p,cb);
+   d.agregarPokemon(q,cf);
+   d.agregarJugador();//1
+   d.agregarJugador();//2
+   d.agregarJugador();//3
+   d.agregarJugador();//4
 }
 
-// TODO: Agregar más tests
+void test_conectarse(){
+Conj<Coordenada> c;
+  Coordenada ca(0,0);               //10                                                  (10,0)
+  c.Agregar(ca);                    // 9
+    Coordenada cb(0,1); //p         // 8
+  c.Agregar(cb);                    // 7
+    Coordenada cd(0,2);             // 6
+  c.Agregar(cd);                    // 5
+    Coordenada ce(1,2);             // 4
+  c.Agregar(ce);                    // 3
+    Coordenada cf(10,0);//q         // 2
+  c.Agregar(cf);                    // 1           (1,2)     (1,4)(1,5)(1,6)
+    Coordenada cg(1,4);             // 0 (0,0)(0,1)(0,2)
+  c.Agregar(cg);                    //     0    1    2    3    4    5    6    7    8    9    10
+    Coordenada ch(1,6);//r
+  c.Agregar(ch);
+    Coordenada ci(1,5);
+  c.Agregar(ci);
+   Driver d(c);
+   Pokemon p = "juan";
+   Pokemon q = "pedro";
+   Pokemon r = "juan";
+   d.agregarPokemon(r,ch);
+   d.agregarPokemon(p,cb);
+   d.agregarPokemon(q,cf);
+   d.agregarJugador();//1
+   d.agregarJugador();//2
+   d.agregarJugador();//3
+   d.agregarJugador();//4
+   d.conectarse(1,ca);
+   d.conectarse(2,cd);
+   d.conectarse(3,ch);
+   d.conectarse(4,ca);
+   d.desconectarse(4);
+}
 
 void test_moverse(){
-  Mapa m;
-  m.agregarCoor(Coordenadatp3(0,0));
-  m.agregarCoor(Coordenadatp3(1,0));
-  m.agregarCoor(Coordenadatp3(0,1));
-  m.agregarCoor(Coordenadatp3(1,1));
-  m.agregarCoor(Coordenadatp3(1,2));
-  m.agregarCoor(Coordenadatp3(2,1));
-  m.agregarCoor(Coordenadatp3(2,2));
-  m.agregarCoor(Coordenadatp3(2,8));
-  Juego game = Juego(m);
-  game.agregarJugador();
-  game.agregarJugador();
-  game.agregarJugador();
-  game.agregarJugador();
-  Coordenadatp3 a = Coordenadatp3(2,3);
-  Jugador b = 2;
-  game.moverse(b, a);
-  //ASSERT(game.posicion(2) == a );
-  ASSERT(game.estaConectado(2) == false)
+Conj<Coordenada> c;
+
+
+  Coordenada ca(0,0);               //10                                                  (10,0)
+  c.Agregar(ca);                    // 9
+    Coordenada cb(0,1); //p         // 8
+  c.Agregar(cb);                    // 7
+    Coordenada cd(0,2);             // 6
+  c.Agregar(cd);                    // 5
+    Coordenada ce(1,2);             // 4
+  c.Agregar(ce);                    // 3
+    Coordenada cf(10,0);//q         // 2
+  c.Agregar(cf);                    // 1           (1,2)     (1,4)(1,5)(1,6)
+    Coordenada cg(1,4);             // 0 (0,0)(0,1)(0,2)
+  c.Agregar(cg);                    //     0    1    2    3    4    5    6    7    8    9    10
+    Coordenada ch(1,6);//r
+  c.Agregar(ch);
+    Coordenada ci(1,5);
+  c.Agregar(ci);
+
+/*
+  c.Agregar(Coordenada(0,0));               //10                                                  (10,0)
+Coordenada ca(0,0);                      // 9
+c.Agregar(Coordenada(0,1)); //p         // 8
+Coordenada cb(0,1);                    // 7
+c.Agregar(Coordenada(0,2));             // 6
+Coordenada cd(0,2);                    // 5
+c.Agregar(Coordenada(1,2));             // 4
+ Coordenada ce(1,2);                  // 3
+    Coordenada cf(10,0);//q         // 2
+  c.Agregar(cf);                    // 1           (1,2)     (1,4)(1,5)(1,6)
+    Coordenada cg(1,4);             // 0 (0,0)(0,1)(0,2)
+  c.Agregar(cg);                    //     0    1    2    3    4    5    6    7    8    9    10
+    Coordenada ch(1,6);//r
+  c.Agregar(ch);
+    Coordenada ci(1,5);
+  c.Agregar(ci);
+  */
+
+  bool verdad = (ci == cf) ;
+
+
+  Nat cantd = c.Cardinal();
+   Driver d(c);
+   Pokemon p = "juan";
+   Pokemon q = "pedro";
+   Pokemon r = "juan";
+   d.agregarPokemon(r,ch);
+   d.agregarPokemon(p,cb);
+   d.agregarPokemon(q,cf);
+   d.agregarJugador();//1
+   d.agregarJugador();//2
+   d.agregarJugador();//3
+   d.agregarJugador();//4
+   d.conectarse(1,ca);
+   d.conectarse(2,cd);
+   d.conectarse(3,ch);
+   d.conectarse(4,ca);
+   d.desconectarse(4);
+   d.moverse(3,ch);
+   Conj<Coordenada>::const_Iterador itj = d.mapa().CrearIt();
+   cout<<"cantidad posiciones mapa : "<<d.mapa().Cardinal()<<endl;
+   /*
+   while(itj.HaySiguiente()){
+    cout<<"pos en mapa de juego: ("<<itj.Siguiente().latitud()<<","<<itj.Siguiente().longitud()<<")"<<endl;
+    itj.Avanzar();
+   }
+   */
 }
 
-void test_posAledanias(){
-  //testea posicionesAledanias(coor), se esta devolviendo incluso la coordenada que le pasamos.
-  //creo que asi tiene que ser.
-  //Anda
-  Mapa m;
-  m.agregarCoor(Coordenadatp3(0,0));
-  m.agregarCoor(Coordenadatp3(1,0));
-  m.agregarCoor(Coordenadatp3(0,1));
-  m.agregarCoor(Coordenadatp3(1,1));
-  m.agregarCoor(Coordenadatp3(1,2));
-  m.agregarCoor(Coordenadatp3(2,1));
-  m.agregarCoor(Coordenadatp3(2,2));
-  m.agregarCoor(Coordenadatp3(0,2));
-  m.agregarCoor(Coordenadatp3(2,0));
-  m.agregarCoor(Coordenadatp3(3,2));
-  m.agregarCoor(Coordenadatp3(2,3));
-  m.agregarCoor(Coordenadatp3(3,3));
-  m.agregarCoor(Coordenadatp3(0,3));
-  m.agregarCoor(Coordenadatp3(3,0));
-  m.agregarCoor(Coordenadatp3(1,3));
-  m.agregarCoor(Coordenadatp3(3,1));
-  m.agregarCoor(Coordenadatp3(0,4));
-  m.agregarCoor(Coordenadatp3(1,4));
-  m.agregarCoor(Coordenadatp3(2,4));
-  m.agregarCoor(Coordenadatp3(3,4));
-  m.agregarCoor(Coordenadatp3(4,4));
-  m.agregarCoor(Coordenadatp3(4,0));
-  m.agregarCoor(Coordenadatp3(4,1));
-  m.agregarCoor(Coordenadatp3(4,2));
-  m.agregarCoor(Coordenadatp3(4,3));
-  m.agregarCoor(Coordenadatp3(2,8));
-  Juego game = Juego(m);
-  Coordenadatp3 a = Coordenadatp3(0,0);
-  Conj<Coordenadatp3> conjA;
-  //conjA.AgregarRapido(Coordenadatp3(4,2));
-  conjA.AgregarRapido(Coordenadatp3(0,2));
-  conjA.AgregarRapido(Coordenadatp3(0,0));
-  //conjA.AgregarRapido(Coordenadatp3(1,2));
-  //conjA.AgregarRapido(Coordenadatp3(3,2));
-  //conjA.AgregarRapido(Coordenadatp3(1,3));
-  //conjA.AgregarRapido(Coordenadatp3(2,3));
-  //conjA.AgregarRapido(Coordenadatp3(3,3));
-  conjA.AgregarRapido(Coordenadatp3(1,1));
-  conjA.AgregarRapido(Coordenadatp3(0,1));
-  conjA.AgregarRapido(Coordenadatp3(1,0));
-  //conjA.AgregarRapido(Coordenadatp3(2,1));
-  //conjA.AgregarRapido(Coordenadatp3(3,1));
-  conjA.AgregarRapido(Coordenadatp3(2,0));
-  //conjA.AgregarRapido(Coordenadatp3(2,4));
-  //conjA.AgregarRapido(Coordenadatp3(2,2));
-
-
-  ASSERT(game.posicionesAledanias(a) == conjA);
-}
 
 
 int main(int argc, char **argv)
 {
- // RUN_TEST(test_constructor_con_mapa);
-  RUN_TEST(test_agregar_jugadores);
-//  RUN_TEST(test_agregar_pokemones);
-//  RUN_TEST(test_moverse);
-//  RUN_TEST(test_posAledanias);
+  RUN_TEST(test_constructor_con_mapa);
+  //RUN_TEST(test_agregar_jugadores);
+  //RUN_TEST(test_agregar_pokemones);
+  //RUN_TEST(test_conectarse);
+  //RUN_TEST(test_moverse);
   return 0;
 }

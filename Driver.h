@@ -122,7 +122,7 @@ class Driver {
 	 * funciones auxiliares que les hagan falta.							*
 	 ************************************************************************/
 
-    Juego *_juego;
+    Juego _juego;
 
 }; // class Driver
 
