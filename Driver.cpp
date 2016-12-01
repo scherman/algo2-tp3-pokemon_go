@@ -3,18 +3,20 @@
 // Instanciar un mapa y un juego 
 
 Mapa & Driver::crearMapa(const Conj<Coordenada> &cs) {
+	_mapa = new Mapa();
     for (Conj<Coordenada>::const_Iterador it = cs.CrearIt(); it.HaySiguiente(); it.Avanzar()) {
         Coordenada actual = it.Siguiente();
         Coordenadatp3 coor = Coordenadatp3(actual.latitud(), actual.longitud());
-        _mapa.agregarCoor(coor); // Falla esta linea wtf
+        (*_mapa).agregarCoor(coor); // Falla esta linea wtf
     }
-    return _mapa;
+    return (*_mapa);
 }
 
 Driver::Driver(const Conj<Coordenada> &cs) : _juego(crearMapa(cs)) {
 }
 
 Driver::~Driver() {
+	delete _mapa;
 }
 
 void Driver::agregarPokemon(const Pokemon &p, const Coordenada &c) {
@@ -43,7 +45,7 @@ void Driver::moverse(const Jugador &j, const Coordenada &c) {
 
 Conj<Coordenada> Driver::mapa() const {
     Conj<Coordenada> conj;
-    for (Conj<Coordenadatp3>::const_Iterador it = _mapa.coordenadas().CrearIt(); it.HaySiguiente(); it.Avanzar()) {
+    for (Conj<Coordenadatp3>::const_Iterador it = (*_mapa).coordenadas().CrearIt(); it.HaySiguiente(); it.Avanzar()) {
         Coordenada coor(it.Siguiente().Latitud(), it.Siguiente().Longitud());
         conj.AgregarRapido(coor);
     }
@@ -53,12 +55,12 @@ Conj<Coordenada> Driver::mapa() const {
 bool Driver::hayCamino(const Coordenada &c1, const Coordenada &c2) const {
     Coordenadatp3 coor1(c1.latitud(), c1.longitud());
     Coordenadatp3 coor2(c2.latitud(), c2.longitud());
-    return _mapa.hayCamino(coor1, coor2);
+    return (*_mapa).hayCamino(coor1, coor2);
 }
 
 bool Driver::posExistente(const Coordenada &c) const {
     Coordenadatp3 coor(c.latitud(), c.longitud());
-    return _mapa.posExistente(coor);
+    return (*_mapa).posExistente(coor);
 }
 
 Conj<Jugador> Driver::jugadores() const {

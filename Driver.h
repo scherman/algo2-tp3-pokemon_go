@@ -123,7 +123,7 @@ class Driver {
 	 ************************************************************************/
     Mapa & crearMapa(const Conj<Coordenada> &cs);
     Juego _juego;
-    Mapa _mapa;
+    Mapa* _mapa;
 
 }; // class Driver
 

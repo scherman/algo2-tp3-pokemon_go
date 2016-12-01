@@ -213,6 +213,8 @@ void test_entrenadoresPosibles() {
     mapa.agregarCoor(Coordenadatp3(10,0));
     mapa.agregarCoor(Coordenadatp3(1,4));
 
+	
+
 
     Juego juego(mapa);
     juego.agregarJugador();
@@ -221,6 +223,9 @@ void test_entrenadoresPosibles() {
     juego.conectarse(2, Coordenadatp3(0,2));
     juego.agregarPokemon("Pikachu", Coordenadatp3(0,1));
     Conj<Jugador> jugadores = juego.entrenadoresPosibles(Coordenadatp3(0,1));
+
+	Conj<Coordenadatp3> conj = juego.mapa().coordenadas();
+	Conj<Coordenada> conjDos = driver.mapa();
     ASSERT(jugadores.Cardinal() == 2);
 }
 
