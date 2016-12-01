@@ -196,7 +196,8 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
 		_jugadores[j-1].sanciones = _jugadores[j-1].sanciones + 1;
 		if (_jugadores[j-1].sanciones == 5) {// eliminamos //
 			_jugadores[j-1].conectado = false;
-            _jugadores[j-1].itJugadoresPosicion.EliminarSiguiente();//sacamos de parcela
+      expuls.AgregarRapido(j);
+      _jugadores[j-1].itJugadoresPosicion.EliminarSiguiente();//sacamos de parcela
 			_cantTotalPokemones = _cantTotalPokemones - _jugadores[j-1].cantCapturados;//  cuidado con resta//
 			_jugadores[j-1].cantCapturados = 0;
 			Conj<string>::const_Iterador itCapturados = _jugadores[j-1].capturados.Claves().CrearIt();
