@@ -357,9 +357,9 @@ const Conj<Coordenadatp3> &Juego::posConPokemons() const {
     return it.Siguiente();
 }
 
-    const Conj<Jugador>& Juego::entrenadoresPosibles(const Coordenadatp3& coor) const{
+    const Conj<Jugador> Juego::entrenadoresPosibles(const Coordenadatp3& coor) const{
     //en el tp usamos un Iterador para js pero ahora es un vector...Antes usabamos un conjunto. Tendriamos que usar Conj.h?
-        Conj<Jugador>* c = new Conj<Jugador>;
+        Conj<Jugador> c;
 
         Conj<Jugador>::const_Iterador it = _jugadoresActivos.CrearIt();
         while(it.HaySiguiente()){
@@ -369,12 +369,12 @@ const Conj<Coordenadatp3> &Juego::posConPokemons() const {
             if ((*this).hayPokemonCercano(tp) && conectado){
                 if(((*this).posPokemonCercano(tp) == coor) && _mapa[coor.Latitud()][coor.Longitud()].
                    conexiones[tp.Latitud()][tp.Longitud()]){
-                    (*c).AgregarRapido(jug);
+                    c.AgregarRapido(jug);
                 }
             }
             it.Avanzar();
         }
-        return *c;
+        return c;
 }
 
 
