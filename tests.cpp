@@ -234,10 +234,9 @@ void test_entrenadoresPosibles() {
 int main(int argc, char **argv)
 {
     RUN_TEST(test_entrenadoresPosibles)
-//  RUN_TEST(test_constructor_con_mapa);
-  //RUN_TEST(test_agregar_jugadores);
-  //RUN_TEST(test_agregar_pokemones);
-  //RUN_TEST(test_conectarse);
-  //RUN_TEST(test_moverse);
+  RUN_TEST(test_constructor_con_mapa);RUN_TEST(test_agregar_jugadores);
+  RUN_TEST(test_agregar_pokemones);
+  RUN_TEST(test_conectarse);
+  RUN_TEST(test_moverse);
   return 0;
 }

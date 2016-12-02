@@ -202,10 +202,10 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
 				if (_pokemones.Significado(clave).cantTotalEspecie == _jugadores[j-1].capturados.Significado(clave))
 					_pokemones.Borrar(clave);
 				else{
-					_pokemones.Significado(clave).cantTotalEspecie = _pokemones.Significado(clave).
-                        cantTotalEspecie - _jugadores[j-1].capturados.Significado(clave);//cuidado con resta
-
-
+                    Nat aux1 = _pokemones.Significado(clave).cantTotalEspecie - _jugadores[j-1].capturados.Significado(clave);
+                    EstadoPokemon aux = {aux1, _pokemones.Significado(clave).posiciones};
+					_pokemones.Borrar(clave);
+                    _pokemones.DefinirRapido(clave, aux);
 				}
 				itCapturados.Avanzar();
 				_jugadores[j-1].capturados.Borrar(clave);
@@ -246,7 +246,8 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
                     _mapa[posPok.Latitud()][posPok.Longitud()].jugadoresEnZona.Cardinal() != 0) {
 					_mapa[posPok.Latitud()][posPok.Longitud()].hayPokemon = false;
 	                //_mapa[posPok.Latitud()][posPok.Longitud()].itPosicionesPokemon.EliminarSiguiente();
-	                it.EliminarSiguiente();//modificado
+	                //_pokemones.Significado(pokemonEnPos(posPok)).posiciones.Eliminar(posPok);
+                    it.EliminarSiguiente();//modificado
 					Jugador jugadorCapturante = _mapa[posPok.Latitud()][posPok.Longitud()].jugadoresEnZona.Minimo();
 					ConjPrior::Iterador zona = _mapa[posPok.Latitud()][posPok.Longitud()].jugadoresEnZona.CrearIt();
                     while(zona.HaySiguienteElem()){//limpiamos zona
