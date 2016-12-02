@@ -242,8 +242,10 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
 				Coordenadatp3 posPok = it.Siguiente();
 				_mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos = _mapa[posPok.Latitud()][posPok.Longitud()].
 				     cantMovimientos + 1;
+            std::cout << "Cant. movs: " << _mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos << std::endl;
 				if (_mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos == 10 && //se captura pokemon
                     _mapa[posPok.Latitud()][posPok.Longitud()].jugadoresEnZona.Cardinal() != 0) {
+                    std::cout << "Se capturo pokemon" << std::endl;
 					_mapa[posPok.Latitud()][posPok.Longitud()].hayPokemon = false;
 	                //_mapa[posPok.Latitud()][posPok.Longitud()].itPosicionesPokemon.EliminarSiguiente();
 	                //_pokemones.Significado(pokemonEnPos(posPok)).posiciones.Eliminar(posPok);

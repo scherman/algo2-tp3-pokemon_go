@@ -231,12 +231,80 @@ void test_entrenadoresPosibles() {
 
 
 
+void test_capturar(){
+
+    Conj<Coordenada> cc;
+    cc.Agregar(Coordenada(0,0));
+    cc.Agregar(Coordenada(0,1));
+    cc.Agregar(Coordenada(0,2));
+    cc.Agregar(Coordenada(1,2));
+    cc.Agregar(Coordenada(10,0));
+    cc.Agregar(Coordenada(9,0));
+    cc.Agregar(Coordenada(8,0));
+    cc.Agregar(Coordenada(7,0));
+    cc.Agregar(Coordenada(6,0));
+    cc.Agregar(Coordenada(5,0));
+    cc.Agregar(Coordenada(4,0));
+    cc.Agregar(Coordenada(3,0));
+    cc.Agregar(Coordenada(2,0));
+    cc.Agregar(Coordenada(1,0));
+    cc.Agregar(Coordenada(1,4));
+
+    Driver driver (cc);
+    driver.agregarJugador();
+    driver.agregarJugador();
+    driver.agregarPokemon("Pikachu", Coordenada(0,1));
+    driver.conectarse(1, Coordenada(0,0));
+    driver.conectarse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(9,0));
+    driver.moverse(2, Coordenada(8,0));
+    driver.moverse(2, Coordenada(7,0));
+    driver.moverse(2, Coordenada(7,0));
+    driver.moverse(2, Coordenada(6,0));
+    driver.moverse(2, Coordenada(5,0));
+    driver.moverse(2, Coordenada(4,0));
+    driver.moverse(2, Coordenada(3,0));
+    driver.moverse(2, Coordenada(2,0));
+    driver.moverse(2, Coordenada(1,0));
+    // Voy acercando al jugador 2 a la zona del pokemon 1 ... Pero cant movs sigue contando a pesar de que estan en la misma zona!!!
+    ASSERT(driver.pokemons(1).Definido("Pikachu") && driver.pokemons(1).Significado("Pikachu") == 1);
+    ASSERT(driver.cantPokemonsTotales() == 1);
+    ASSERT(driver.cantMismaEspecie("Pikachu") == 1);
+
+    driver.moverse(2, Coordenada(10,0));
+
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    driver.moverse(2, Coordenada(10,0));
+    ASSERT(driver.pokemons(1).Definido("Pikachu") && driver.pokemons(1).Significado("Pikachu") == 1);
+    ASSERT(driver.cantPokemonsTotales() == 1);
+    ASSERT(driver.cantMismaEspecie("Pikachu") == 1);
+
+
+}
+
 int main(int argc, char **argv)
 {
-    RUN_TEST(test_entrenadoresPosibles)
-  RUN_TEST(test_constructor_con_mapa);RUN_TEST(test_agregar_jugadores);
-  RUN_TEST(test_agregar_pokemones);
-  RUN_TEST(test_conectarse);
-  RUN_TEST(test_moverse);
-  return 0;
+//    RUN_TEST(test_entrenadoresPosibles)
+//  RUN_TEST(test_constructor_con_mapa);RUN_TEST(test_agregar_jugadores);
+//  RUN_TEST(test_agregar_pokemones);
+//  RUN_TEST(test_conectarse);
+//  RUN_TEST(test_moverse);
+    RUN_TEST(test_capturar);
+    return 0;
 }
+
