@@ -263,9 +263,9 @@ void test_capturar(){
     driver.moverse(2, Coordenada(7,0));
     driver.moverse(2, Coordenada(6,0));
     driver.moverse(2, Coordenada(5,0));
-    driver.moverse(2, Coordenada(4,0));
-    driver.moverse(2, Coordenada(3,0));
-    driver.moverse(2, Coordenada(2,0));
+    driver.moverse(2, Coordenada(1,0));
+    driver.moverse(2, Coordenada(1,0));
+    driver.moverse(2, Coordenada(1,0));
     driver.moverse(2, Coordenada(1,0));
     // Voy acercando al jugador 2 a la zona del pokemon 1 ... Pero cant movs sigue contando a pesar de que estan en la misma zona!!!
     ASSERT(driver.pokemons(1).Definido("Pikachu") && driver.pokemons(1).Significado("Pikachu") == 1);

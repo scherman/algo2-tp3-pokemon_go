@@ -230,7 +230,10 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
 
 	Conj<Coordenadatp3>::Iterador it = _posicionesPokemons.CrearIt();
 	while (it.HaySiguiente() && _jugadores[j-1].conectado && !sancionado) {
-		if( ((hayPokemonCercano(posAnterior) && !(posPokemonCercano(posAnterior) == it.Siguiente())) ||
+        // No es mejor esta guarda?:
+        // hayPokemonCercano(coor) && (!hayPokemonCercano(posAnterior) || posPokemonCercano(coor) != posPokemonCercano(posAnterior))
+		// chequeen los valores que toma hayPokemonCercano qe no estoy seguro que funcione bien.
+        if( ((hayPokemonCercano(posAnterior) && !(posPokemonCercano(posAnterior) == it.Siguiente())) ||
            !hayPokemonCercano(posAnterior)) && (hayPokemonCercano(coor) &&
                 posPokemonCercano(coor) == it.Siguiente()) ){//se agrega a zona de pokemon .caso : cae en entorno de poke
 				Coordenadatp3 posPok = posPokemonCercano(coor);

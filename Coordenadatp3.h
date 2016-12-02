@@ -23,6 +23,7 @@ class Coordenadatp3{
      void CoordenadaALaIzquierda();
      void CoordenadaALaDerecha();
      bool operator == (const Coordenadatp3& otro) const;
+    bool operator != (const Coordenadatp3& otro) const;
 
     private:
         Nat latitud;

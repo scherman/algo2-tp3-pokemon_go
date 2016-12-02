@@ -66,3 +66,7 @@ bool Coordenadatp3::operator == (const Coordenadatp3& otro) const{
 return latitud == otro.latitud && longitud == otro.longitud;
 }
 
+bool Coordenadatp3::operator != (const Coordenadatp3& otro) const{
+    return latitud != otro.latitud or longitud != otro.longitud;
+}
+
