@@ -8,7 +8,7 @@ using namespace aed2;
 Conj<Coordenadatp3>::const_Iterador it = m.coordenadas().CrearIt();
 Nat masAlto = 0;
 while(it.HaySiguiente()){
-    if (masAlto < it.Siguiente().Latitud())
+     if (masAlto < it.Siguiente().Latitud())
         masAlto = it.Siguiente().Latitud();
     it.Avanzar();
 }
@@ -18,7 +18,7 @@ return masAlto;
 Conj<Coordenadatp3>::const_Iterador it = m.coordenadas().CrearIt();
 Nat masAncho = 0;
 while(it.HaySiguiente()){
-    if (masAncho < it.Siguiente().Longitud())
+     if (masAncho < it.Siguiente().Longitud())
         masAncho = it.Siguiente().Longitud();
     it.Avanzar();
 }
@@ -189,7 +189,7 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
     if((hayPokemonCercano(posAnterior) && hayPokemonCercano(coor)) &&
        (posPokemonCercano(posAnterior) == posPokemonCercano(coor))){
         seMueveEnMismaZona = true;
-    }
+    } 
 	if ((!_mapa[posAnterior.Latitud()][posAnterior.Longitud()].conexiones[coor.Latitud()][coor.Longitud()]) ||
      posAnterior.DistEuclidea(coor) > 100) {//sancionamos
 		_jugadores[j-1].sanciones = _jugadores[j-1].sanciones + 1;
@@ -278,7 +278,15 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
                          _jugadores[jugadorCapturante-1].capturados.DefinirRapido(pok,num);
 					}else
                     _jugadores[jugadorCapturante-1].capturados.DefinirRapido(pok, 1);
-                    _mapa[posPok.Latitud()][posPok.Longitud()].pokemon = "";
+                    
+					//actualizamos posiciones en estado poke
+                         Nat nuevacant = _pokemones.Significado(pok).cantTotalEspecie;
+                         _pokemones.Significado(pok).posiciones.Eliminar(posPok);
+                        Conj<Coordenadatp3> conjauxil =  _pokemones.Significado(pok).posiciones;
+                        _pokemones.Borrar(pok);
+                        _pokemones.DefinirRapido(pok,{nuevacant,conjauxil});
+
+					_mapa[posPok.Latitud()][posPok.Longitud()].pokemon = "";
 					_mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos = 0;
 					_jugadores[jugadorCapturante-1].cantCapturados = _jugadores[jugadorCapturante-1].cantCapturados + 1;
 				}
