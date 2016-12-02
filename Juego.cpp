@@ -184,7 +184,12 @@ void Juego::desconectarse(const Jugador &j) {
 
 void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condicional if para caso no conectado
 	Coordenadatp3 posAnterior = _jugadores[j-1].posicion;
+    bool seMueveEnMismaZona = false;
 	bool sancionado = false;
+    if((hayPokemonCercano(posAnterior) && hayPokemonCercano(coor)) &&
+       (posPokemonCercano(posAnterior) == posPokemonCercano(coor))){
+        seMueveEnMismaZona = true;
+    }
 	if ((!_mapa[posAnterior.Latitud()][posAnterior.Longitud()].conexiones[coor.Latitud()][coor.Longitud()]) ||
      posAnterior.DistEuclidea(coor) > 100) {//sancionamos
 		_jugadores[j-1].sanciones = _jugadores[j-1].sanciones + 1;
@@ -240,8 +245,9 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
 				_jugadores[j-1].itJugadoresEnZona = _mapa[posPok.Latitud()][posPok.Longitud()].
                     jugadoresEnZona.Agregar(_jugadores[j-1].cantCapturados,j);
 				_mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos = 0;
+                std::cout << "Cant. movs: " << _mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos << std::endl;
 			}
-			else {//caso : cae fuera de entorno de poke
+			else if(!seMueveEnMismaZona || !(it.Siguiente() == posPokemonCercano(coor)) ) {//caso : cae fuera de entorno de poke
 				Coordenadatp3 posPok = it.Siguiente();
 				_mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos = _mapa[posPok.Latitud()][posPok.Longitud()].
 				     cantMovimientos + 1;
