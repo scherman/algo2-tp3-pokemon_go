@@ -196,7 +196,8 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
 		sancionado = true;
 		if (_jugadores[j-1].sanciones == 5) {// eliminamos //
 			_jugadores[j-1].conectado = false;
-           expuls.AgregarRapido(j);
+
+			expuls.AgregarRapido(j);
           _jugadores[j-1].itJugadoresPosicion.EliminarSiguiente();//sacamos de parcela
 			_cantTotalPokemones = _cantTotalPokemones - _jugadores[j-1].cantCapturados;//  cuidado con resta//
 			_jugadores[j-1].cantCapturados = 0;
@@ -233,8 +234,12 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
 	    _jugadores[j-1].itJugadoresPosicion = _mapa[coor.Latitud()][coor.Longitud()].jugadoresEnPosicion.AgregarRapido(j);
 	}
 
-	Conj<Coordenadatp3>::Iterador it = _posicionesPokemons.CrearIt();
-	while (it.HaySiguiente() && _jugadores[j-1].conectado && !sancionado) {
+	Conj<Coordenadatp3>::Iterador it = _posicionesPokemons.CrearIt(); 
+		 bool avanzo = false;//++
+
+	while (it.HaySiguiente() && _jugadores[j-1].conectado && !sancionado) {  
+		         avanzo = false;//++
+
         // No es mejor esta guarda?:
         // hayPokemonCercano(coor) && (!hayPokemonCercano(posAnterior) || posPokemonCercano(coor) != posPokemonCercano(posAnterior))
 		// chequeen los valores que toma hayPokemonCercano qe no estoy seguro que funcione bien.
@@ -258,7 +263,9 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
 					_mapa[posPok.Latitud()][posPok.Longitud()].hayPokemon = false;
 	                //_mapa[posPok.Latitud()][posPok.Longitud()].itPosicionesPokemon.EliminarSiguiente();
 	                //_pokemones.Significado(pokemonEnPos(posPok)).posiciones.Eliminar(posPok);
-                    it.EliminarSiguiente();//modificado
+                    it.EliminarSiguiente();//modificado  
+					  avanzo = true;//++
+
 					Jugador jugadorCapturante = _mapa[posPok.Latitud()][posPok.Longitud()].jugadoresEnZona.Minimo();
 					ConjPrior::Iterador zona = _mapa[posPok.Latitud()][posPok.Longitud()].jugadoresEnZona.CrearIt();
                     while(zona.HaySiguienteElem()){//limpiamos zona
@@ -276,7 +283,7 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
 					_jugadores[jugadorCapturante-1].cantCapturados = _jugadores[jugadorCapturante-1].cantCapturados + 1;
 				}
 			}
-        if(it.HaySiguiente())
+        if(it.HaySiguiente()  && !avanzo)
 		   it.Avanzar();
 	}
 	if (!sancionado)
