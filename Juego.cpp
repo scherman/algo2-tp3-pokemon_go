@@ -8,7 +8,7 @@ using namespace aed2;
 Conj<Coordenadatp3>::const_Iterador it = m.coordenadas().CrearIt();
 Nat masAlto = 0;
 while(it.HaySiguiente()){
-     if (masAlto < it.Siguiente().Latitud())
+    if (masAlto < it.Siguiente().Latitud())
         masAlto = it.Siguiente().Latitud();
     it.Avanzar();
 }
@@ -18,7 +18,7 @@ return masAlto;
 Conj<Coordenadatp3>::const_Iterador it = m.coordenadas().CrearIt();
 Nat masAncho = 0;
 while(it.HaySiguiente()){
-     if (masAncho < it.Siguiente().Longitud())
+    if (masAncho < it.Siguiente().Longitud())
         masAncho = it.Siguiente().Longitud();
     it.Avanzar();
 }
@@ -184,20 +184,14 @@ void Juego::desconectarse(const Jugador &j) {
 
 void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condicional if para caso no conectado
 	Coordenadatp3 posAnterior = _jugadores[j-1].posicion;
-    bool seMueveEnMismaZona = false;
 	bool sancionado = false;
-    if((hayPokemonCercano(posAnterior) && hayPokemonCercano(coor)) &&
-       (posPokemonCercano(posAnterior) == posPokemonCercano(coor))){
-        seMueveEnMismaZona = true;
-    } 
 	if ((!_mapa[posAnterior.Latitud()][posAnterior.Longitud()].conexiones[coor.Latitud()][coor.Longitud()]) ||
      posAnterior.DistEuclidea(coor) > 100) {//sancionamos
 		_jugadores[j-1].sanciones = _jugadores[j-1].sanciones + 1;
 		sancionado = true;
 		if (_jugadores[j-1].sanciones == 5) {// eliminamos //
 			_jugadores[j-1].conectado = false;
-
-			expuls.AgregarRapido(j);
+           expuls.AgregarRapido(j);
           _jugadores[j-1].itJugadoresPosicion.EliminarSiguiente();//sacamos de parcela
 			_cantTotalPokemones = _cantTotalPokemones - _jugadores[j-1].cantCapturados;//  cuidado con resta//
 			_jugadores[j-1].cantCapturados = 0;
@@ -234,12 +228,14 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
 	    _jugadores[j-1].itJugadoresPosicion = _mapa[coor.Latitud()][coor.Longitud()].jugadoresEnPosicion.AgregarRapido(j);
 	}
 
-	Conj<Coordenadatp3>::Iterador it = _posicionesPokemons.CrearIt(); 
-		 bool avanzo = false;//++
+	Conj<Coordenadatp3>::Iterador it = _posicionesPokemons.CrearIt();
+	while (it.HaySiguiente() && _jugadores[j-1].conectado && !sancionado) {
 
-	while (it.HaySiguiente() && _jugadores[j-1].conectado && !sancionado) {  
-		         avanzo = false;//++
-
+		//Si hay movimiento dentro de la misma zona
+		if (hayPokemonCercano(coor) && hayPokemonCercano(posAnterior) && posPokemonCercano(coor) == posPokemonCercano(posAnterior) && it.Siguiente() == posPokemonCercano(coor)) {
+			it.Avanzar();
+			continue;
+		}
         // No es mejor esta guarda?:
         // hayPokemonCercano(coor) && (!hayPokemonCercano(posAnterior) || posPokemonCercano(coor) != posPokemonCercano(posAnterior))
 		// chequeen los valores que toma hayPokemonCercano qe no estoy seguro que funcione bien.
@@ -250,9 +246,8 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
 				_jugadores[j-1].itJugadoresEnZona = _mapa[posPok.Latitud()][posPok.Longitud()].
                     jugadoresEnZona.Agregar(_jugadores[j-1].cantCapturados,j);
 				_mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos = 0;
-                std::cout << "Cant. movs: " << _mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos << std::endl;
 			}
-			else if(!seMueveEnMismaZona || !(it.Siguiente() == posPokemonCercano(coor)) ) {//caso : cae fuera de entorno de poke
+			else {//caso : cae fuera de entorno de poke
 				Coordenadatp3 posPok = it.Siguiente();
 				_mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos = _mapa[posPok.Latitud()][posPok.Longitud()].
 				     cantMovimientos + 1;
@@ -263,9 +258,7 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
 					_mapa[posPok.Latitud()][posPok.Longitud()].hayPokemon = false;
 	                //_mapa[posPok.Latitud()][posPok.Longitud()].itPosicionesPokemon.EliminarSiguiente();
 	                //_pokemones.Significado(pokemonEnPos(posPok)).posiciones.Eliminar(posPok);
-                    it.EliminarSiguiente();//modificado  
-					  avanzo = true;//++
-
+                    it.EliminarSiguiente();//modificado
 					Jugador jugadorCapturante = _mapa[posPok.Latitud()][posPok.Longitud()].jugadoresEnZona.Minimo();
 					ConjPrior::Iterador zona = _mapa[posPok.Latitud()][posPok.Longitud()].jugadoresEnZona.CrearIt();
                     while(zona.HaySiguienteElem()){//limpiamos zona
@@ -278,20 +271,12 @@ void Juego::moverse(const Jugador &j,const Coordenadatp3 &coor) {//agregar condi
                          _jugadores[jugadorCapturante-1].capturados.DefinirRapido(pok,num);
 					}else
                     _jugadores[jugadorCapturante-1].capturados.DefinirRapido(pok, 1);
-                    
-					//actualizamos posiciones en estado poke
-                         Nat nuevacant = _pokemones.Significado(pok).cantTotalEspecie;
-                         _pokemones.Significado(pok).posiciones.Eliminar(posPok);
-                        Conj<Coordenadatp3> conjauxil =  _pokemones.Significado(pok).posiciones;
-                        _pokemones.Borrar(pok);
-                        _pokemones.DefinirRapido(pok,{nuevacant,conjauxil});
-
-					_mapa[posPok.Latitud()][posPok.Longitud()].pokemon = "";
+                    _mapa[posPok.Latitud()][posPok.Longitud()].pokemon = "";
 					_mapa[posPok.Latitud()][posPok.Longitud()].cantMovimientos = 0;
 					_jugadores[jugadorCapturante-1].cantCapturados = _jugadores[jugadorCapturante-1].cantCapturados + 1;
 				}
 			}
-        if(it.HaySiguiente()  && !avanzo)
+        if(it.HaySiguiente())
 		   it.Avanzar();
 	}
 	if (!sancionado)
